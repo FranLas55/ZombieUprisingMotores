@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 1376603342}
   - component: {fileID: 1376603341}
   - component: {fileID: 1376603340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -364,6 +364,11 @@ MonoBehaviour:
   _weapon: 0
   _interactKey: 101
   _runKey: 304
+  _jumpKey: 32
+  _jumpRayRange: 0.5
+  _jumpMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1376603341
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -426,7 +431,7 @@ GameObject:
   - component: {fileID: 2126734638}
   - component: {fileID: 2126734637}
   - component: {fileID: 2126734636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Land
   m_TagString: Untagged
   m_Icon: {fileID: 0}

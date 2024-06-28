@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
+//Francisco Lastra
+
 public abstract class Entity : MonoBehaviour
 {
     [Header("Values")]
@@ -16,7 +18,7 @@ public abstract class Entity : MonoBehaviour
         _actualHp = _hp;
     }
 
-    protected void Heal(int hp)
+    public void Heal(int hp)
     {
         _actualHp += hp;
         print($"{gameObject.name} se curo {hp}. Vida actual: {_actualHp}");

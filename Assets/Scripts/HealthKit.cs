@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthKit : MonoBehaviour, IInteractuable
+public class HealthKit : Interactuable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int _hpToHeal;
 
-    // Update is called once per frame
-    void Update()
+    public override void Buy(Player p) //HealPlayer
     {
-        
+        //preguntarle al GM si el jugador tiene los puntos suficientes para comprarla
+            p.Heal(_hpToHeal);
+            //Restar puntos
     }
 }
