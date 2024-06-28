@@ -7,12 +7,23 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+}
+
+namespace weapon
+{
+    public enum WeaponEnum
+    {
+        Gun,
+        ShotGun,
+        MachineGun
+    }
+
 }

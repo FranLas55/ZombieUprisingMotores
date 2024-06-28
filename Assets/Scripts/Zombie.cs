@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : Entity
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         
     }
@@ -14,5 +14,10 @@ public class Zombie : Entity
     void Update()
     {
         
+    }
+
+    protected override void OnDeath()
+    {
+
     }
 }
