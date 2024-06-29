@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Tobias Rodriguez
+
 public class Gun : Weapon
 {
     public override void Shoot()
@@ -18,6 +20,11 @@ public class Gun : Weapon
             newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
 
             _actualBullets--;
+            _animator.SetTrigger(_onShootName);
+        }
+        else
+        {
+            _player.shootAndRecharge = Recharge;
         }
     }
 

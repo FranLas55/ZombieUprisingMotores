@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tobias Rodriguez
+
 public class ShotGun : Weapon
 {
     [SerializeField] private int _pelletsPerShot = 5;
@@ -10,6 +12,8 @@ public class ShotGun : Weapon
     {
         if (_actualBullets > 0)
         {
+            _animator.SetTrigger(_onShootName);
+
             for (int i = 0; i < _pelletsPerShot; i++)
             {
                 Vector3 variation = new Vector3(Random.Range(-_bulletVariation.x, _bulletVariation.x),
@@ -26,6 +30,10 @@ public class ShotGun : Weapon
             }
 
             _actualBullets--;
+        }
+        else
+        {
+            _player.shootAndRecharge = Recharge;
         }
     }
 }

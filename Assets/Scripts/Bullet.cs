@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Tobias Rodriguez
+
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float scale;

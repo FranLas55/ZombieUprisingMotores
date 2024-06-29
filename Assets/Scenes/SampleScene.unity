@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 487334981}
   - component: {fileID: 487334983}
   - component: {fileID: 487334982}
+  - component: {fileID: 487334984}
   m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
@@ -268,6 +269,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487334980}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &487334984
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487334980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8642be3b1e23592468c33e72befb75ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &557631142
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +301,7 @@ GameObject:
   - component: {fileID: 557631143}
   - component: {fileID: 557631145}
   - component: {fileID: 557631144}
+  - component: {fileID: 557631146}
   m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
@@ -351,6 +374,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557631142}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &557631146
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557631142}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8642be3b1e23592468c33e72befb75ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &609260198
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,15 +419,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609260198}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1460964754}
   - {fileID: 1522712653}
   - {fileID: 2123798669}
-  m_Father: {fileID: 1376603339}
+  m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -490,6 +534,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -568,9 +613,26 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1376603339}
+  m_Children:
+  - {fileID: 609260199}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1bb8b88fffa5e4fb28af3680295104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xSensibility: 200
+  _ySensibility: 300
+  _player: {fileID: 1376603339}
+  _enableCursor: 1
 --- !u!1 &1376603338
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,9 +664,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 963194228}
-  - {fileID: 609260199}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1376603340
@@ -698,6 +758,7 @@ GameObject:
   - component: {fileID: 1399069304}
   - component: {fileID: 1399069306}
   - component: {fileID: 1399069305}
+  - component: {fileID: 1399069307}
   m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
@@ -770,6 +831,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399069303}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1399069307
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399069303}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8642be3b1e23592468c33e72befb75ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1460964753
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +901,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
   _shootPoint: {fileID: 197279458}
   _player: {fileID: 1376603340}
+  _animator: {fileID: 487334984}
+  _onRechargeName: OnRecharge
+  _onShootName: OnShoot
   _damage: 5
   _cadence: 0.75
   _bulletSpeed: 10
@@ -877,6 +962,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
   _shootPoint: {fileID: 422960978}
   _player: {fileID: 1376603340}
+  _animator: {fileID: 1399069307}
+  _onRechargeName: OnRecharge
+  _onShootName: OnShoot
   _damage: 3
   _cadence: 0.1
   _bulletSpeed: 10
@@ -937,6 +1025,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
   _shootPoint: {fileID: 2147426793}
   _player: {fileID: 1376603340}
+  _animator: {fileID: 557631146}
+  _onRechargeName: OnRecharge
+  _onShootName: OnShoot
   _damage: 4
   _cadence: 1.5
   _bulletSpeed: 10
@@ -1088,5 +1179,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
+  - {fileID: 963194228}
   - {fileID: 1376603339}
   - {fileID: 2126734639}
