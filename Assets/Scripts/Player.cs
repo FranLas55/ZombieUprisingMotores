@@ -5,7 +5,6 @@ using weapon;
 
 //Francisco Lastra
 
-[RequireComponent(typeof(Rigidbody))]
 public class Player : Entity
 {
     [Header("Values")]
@@ -19,6 +18,7 @@ public class Player : Entity
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private KeyCode _runKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode _rechargeKey = KeyCode.R;
 
     [Header("JumpRay")]
     [SerializeField] private float _jumpRayRange = .5f;
@@ -26,17 +26,22 @@ public class Player : Entity
 
     private Vector3 _dir = new(), _transformOffset = new();
 
-    private Rigidbody _rb;
-
     private Movement _movement;
 
     private Ray _jumpRay;
 
+    private Weapon _actualWeapon;
+
+    public delegate void Shoot();
+
+    Shoot shoot;
+
     protected override void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        _movement = new Movement(_rb, _speed);
         base.Start();
+        ChangeWeapon(WeaponEnum.Gun);
+        _movement = new Movement(_rb, _speed);
+        shoot = () => _actualWeapon.Shoot();
     }
 
     private void Update()
@@ -47,6 +52,19 @@ public class Player : Entity
         else _movement.RestartSpeed();
 
         if (IsGrounded() && Input.GetKeyDown(_jumpKey)) Jump();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            shoot();
+        }
+
+        if(Input.GetKeyDown(_rechargeKey)) _actualWeapon.Recharge();
+
+        //pruebas
+        if (Input.GetKeyDown(KeyCode.M)) ChangeWeapon(WeaponEnum.MachineGun);
+        if (Input.GetKeyDown(KeyCode.N)) ChangeWeapon(WeaponEnum.ShotGun);
+        if (Input.GetKeyDown(KeyCode.G)) ChangeWeapon(WeaponEnum.Gun);
+
     }
 
     private void FixedUpdate()
@@ -67,6 +85,15 @@ public class Player : Entity
         foreach(var weapon in _myWeapons)
         {
             //Fijarse si el enum del arma es igual a _weapon y si es el mismo prenderla, si no apagarla
+            if (weapon.ReturnType() == _weapon)
+            {
+                weapon.gameObject.SetActive(true);
+                _actualWeapon = weapon;
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
         }
     }
 

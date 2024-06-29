@@ -7,36 +7,45 @@ public class Machinegun : Weapon
     [SerializeField] private float _fireRate = 0.1f;
     [SerializeField] private int _maxBulletsPerBurst = 10;
 
-    private bool _isShooting;
 
-    private void Update()
-    {
-        if (_isShooting) StartCoroutine(ShootBurst());
-    }
+    protected bool _isShooting;
+
     public override void Shoot()
     {
-        _isShooting = true;
+        if (!_isShooting)
+        {
+            StartCoroutine(ShootBurst());
+        }
     }
 
     private IEnumerator ShootBurst()
     {
+        _isShooting = true;
+
         int bulletsFire = 0;
 
         while (bulletsFire < _maxBulletsPerBurst && _actualBullets > 0)
         {
+            Vector3 variation = new Vector3(Random.Range(-_bulletVariation.x, _bulletVariation.x),
+                                                Random.Range(-_bulletVariation.y, _bulletVariation.y),
+                                                Random.Range(-_bulletVariation.z, _bulletVariation.z));
+
+            Vector3 shootDirection = _shootPoint.forward + variation;
+
             Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
 
-            newBullet.InitializeBullet(_damage, _bulletLifeTime);
+            newBullet.transform.forward = shootDirection;
 
-            Vector3 shootDirection = _shootPoint.forward;
-
-            newBullet.Shot(shootDirection.normalized);
+            newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
 
             bulletsFire++;
+            _actualBullets--;
 
             yield return new WaitForSeconds(_fireRate);
         }
 
         _isShooting = false;
+
+        //_isShooting = false;
     }
 }

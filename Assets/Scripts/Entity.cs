@@ -5,6 +5,7 @@ using UnityEngine;
 
 //Francisco Lastra
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Entity : MonoBehaviour
 {
     [Header("Values")]
@@ -12,9 +13,11 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] protected float _speed;
 
     protected int _actualHp;
+    protected Rigidbody _rb;
 
     protected virtual void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         _actualHp = _hp;
     }
 
@@ -28,7 +31,7 @@ public abstract class Entity : MonoBehaviour
     {
         _actualHp -= dmg;
 
-        if(_actualHp <= 0)
+        if (_actualHp <= 0)
         {
             //se muere
             OnDeath();

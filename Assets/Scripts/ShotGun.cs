@@ -8,7 +8,6 @@ public class ShotGun : Weapon
 
     public override void Shoot()
     {
-        base.Shoot();
         if (_actualBullets > 0)
         {
             for (int i = 0; i < _pelletsPerShot; i++)
@@ -18,11 +17,14 @@ public class ShotGun : Weapon
                                                 Random.Range(-_bulletVariation.z, _bulletVariation.z));
 
                 Vector3 shootDirection = (_shootPoint.forward + variation).normalized;
-                Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-                newBullet.InitializeBullet(_damage, _bulletLifeTime);
-                newBullet.Shot(shootDirection);
 
+                Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+
+                newBullet.transform.forward = shootDirection;
+
+                newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
             }
+
             _actualBullets--;
         }
     }

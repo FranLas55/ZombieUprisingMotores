@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3885042434816609236}
   - component: {fileID: -6418944035160377694}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: ZombieBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   scale: 0.25
   _bulletMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 72
 --- !u!54 &-6418944035160377694
 Rigidbody:
   m_ObjectHideFlags: 0

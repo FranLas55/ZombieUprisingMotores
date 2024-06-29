@@ -7,16 +7,16 @@ public class Gun : Weapon
 {
     public override void Shoot()
     {
-        base.Shoot();
         if (_actualBullets > 0)
         {
-            Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-
-            newBullet.InitializeBullet(_damage, _bulletLifeTime);
-
             Vector3 shootDirection  = _shootPoint.forward;
 
-            newBullet.Shot(shootDirection.normalized);
+            Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+
+            newBullet.transform.forward = shootDirection;
+
+            newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
+
             _actualBullets--;
         }
     }
