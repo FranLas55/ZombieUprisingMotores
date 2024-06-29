@@ -10,7 +10,7 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Transform _player;
-    [SerializeField] private bool _enableCursor = true;
+    [SerializeField] private bool _disableCursor = true;
 
     private float _mouseX, _mouseY, _xRotation, _yRotation;
 
@@ -19,7 +19,7 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         _offset = transform.position;
-        Cursor.visible = _enableCursor;
+        Cursor.visible = _disableCursor;
     }
 
     void LateUpdate()
