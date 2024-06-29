@@ -5,7 +5,6 @@ using weapon;
 
 //Francisco Lastra
 
-[RequireComponent(typeof(Rigidbody))]
 public class Player : Entity
 {
     [Header("Values")]
@@ -27,20 +26,22 @@ public class Player : Entity
 
     private Vector3 _dir = new(), _transformOffset = new();
 
-    private Rigidbody _rb;
-
     private Movement _movement;
 
     private Ray _jumpRay;
 
     private Weapon _actualWeapon;
 
+    public delegate void Shoot();
+
+    Shoot shoot;
+
     protected override void Start()
     {
-        ChangeWeapon(WeaponEnum.Gun);
-        _rb = GetComponent<Rigidbody>();
-        _movement = new Movement(_rb, _speed);
         base.Start();
+        ChangeWeapon(WeaponEnum.Gun);
+        _movement = new Movement(_rb, _speed);
+        shoot = () => _actualWeapon.Shoot();
     }
 
     private void Update()
@@ -54,7 +55,7 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(0))
         {
-            _actualWeapon.Shoot();
+            shoot();
         }
 
         if(Input.GetKeyDown(_rechargeKey)) _actualWeapon.Recharge();
