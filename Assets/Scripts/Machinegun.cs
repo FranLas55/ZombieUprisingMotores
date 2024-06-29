@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tobias Rodriguez
+
 public class Machinegun : Weapon
 {
     [SerializeField] private float _fireRate = 0.1f;
@@ -15,6 +17,11 @@ public class Machinegun : Weapon
         if (!_isShooting)
         {
             StartCoroutine(ShootBurst());
+        }
+
+        if(_actualBullets <= 0)
+        {
+            _player.shootAndRecharge = Recharge;
         }
     }
 
@@ -40,6 +47,7 @@ public class Machinegun : Weapon
 
             bulletsFire++;
             _actualBullets--;
+            _animator.SetTrigger(_onShootName);
 
             yield return new WaitForSeconds(_fireRate);
         }

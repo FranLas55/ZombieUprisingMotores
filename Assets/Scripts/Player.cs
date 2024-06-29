@@ -34,14 +34,13 @@ public class Player : Entity
 
     public delegate void Shoot();
 
-    Shoot shoot;
+    public Shoot shootAndRecharge;
 
     protected override void Start()
     {
         base.Start();
         ChangeWeapon(WeaponEnum.Gun);
         _movement = new Movement(_rb, _speed);
-        shoot = () => _actualWeapon.Shoot();
     }
 
     private void Update()
@@ -55,7 +54,7 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(0))
         {
-            shoot();
+            shootAndRecharge();
         }
 
         if(Input.GetKeyDown(_rechargeKey)) _actualWeapon.Recharge();
@@ -95,6 +94,8 @@ public class Player : Entity
                 weapon.gameObject.SetActive(false);
             }
         }
+
+        shootAndRecharge = _actualWeapon.Shoot;
     }
 
 

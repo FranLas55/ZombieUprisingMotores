@@ -4,12 +4,20 @@ using TMPro;
 using UnityEngine;
 using weapon;
 
+//Tobias Rodriguez
+
 public abstract class Weapon : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected Bullet _bulletPrefab;
     [SerializeField] protected Transform _shootPoint;
-    [SerializeField] private Player _player;
+    [SerializeField] protected Player _player;
+
+    [Header("Animations")]
+    [SerializeField] protected Animator _animator;
+    [SerializeField] private string _onRechargeName = "OnRecharge";
+    [SerializeField] protected string _onShootName = "OnShoot";
+
 
     [Header("Values")]
     [SerializeField] protected int _damage;
@@ -58,6 +66,8 @@ public abstract class Weapon : MonoBehaviour
         {
             _actualAmmo = _maxAmmo;
         }
+        _animator.SetTrigger(_onRechargeName);
+        _player.shootAndRecharge = Shoot;
     }
 
     public int ReturnBullets() //para la UI
