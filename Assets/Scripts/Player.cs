@@ -19,6 +19,7 @@ public class Player : Entity
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private KeyCode _runKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode _rechargeKey = KeyCode.R;
 
     [Header("JumpRay")]
     [SerializeField] private float _jumpRayRange = .5f;
@@ -32,8 +33,11 @@ public class Player : Entity
 
     private Ray _jumpRay;
 
+    private Weapon _actualWeapon;
+
     protected override void Start()
     {
+        ChangeWeapon(WeaponEnum.Gun);
         _rb = GetComponent<Rigidbody>();
         _movement = new Movement(_rb, _speed);
         base.Start();
@@ -47,6 +51,19 @@ public class Player : Entity
         else _movement.RestartSpeed();
 
         if (IsGrounded() && Input.GetKeyDown(_jumpKey)) Jump();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            _actualWeapon.Shoot();
+        }
+
+        if(Input.GetKeyDown(_rechargeKey)) _actualWeapon.Recharge();
+
+        //pruebas
+        if (Input.GetKeyDown(KeyCode.M)) ChangeWeapon(WeaponEnum.MachineGun);
+        if (Input.GetKeyDown(KeyCode.N)) ChangeWeapon(WeaponEnum.ShotGun);
+        if (Input.GetKeyDown(KeyCode.G)) ChangeWeapon(WeaponEnum.Gun);
+
     }
 
     private void FixedUpdate()
@@ -67,6 +84,15 @@ public class Player : Entity
         foreach(var weapon in _myWeapons)
         {
             //Fijarse si el enum del arma es igual a _weapon y si es el mismo prenderla, si no apagarla
+            if (weapon.ReturnType() == _weapon)
+            {
+                weapon.gameObject.SetActive(true);
+                _actualWeapon = weapon;
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
         }
     }
 
