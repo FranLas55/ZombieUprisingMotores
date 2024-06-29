@@ -12,7 +12,6 @@ public class WeaponStand : Interactuable
 
     public override void Buy(Player p)
     {
-        //preguntarle al GM si el jugador tiene los puntos suficientes para comprarla
         if (_isChest)
         {
             var weapon = _weapons[Random.Range(0, _weapons.Length)];
@@ -22,6 +21,5 @@ public class WeaponStand : Interactuable
         {
             p.ChangeWeapon(_weapons[0]);
         }
-        //restar puntos
     }
 }

@@ -30,6 +30,7 @@ public class ShotGun : Weapon
             }
 
             _actualBullets--;
+            UpdateUI(false);
         }
         else
         {

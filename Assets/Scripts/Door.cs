@@ -15,9 +15,7 @@ public class Door : Interactuable
 
     public override void Buy(Player p)
     {
-        //preguntarle al GM si el jugador tiene los puntos suficientes para comprarla
-            print("Se abrió la puerta");
-            _animator.SetTrigger(_openName);
-            //RestarPuntos
+        print("Se abrió la puerta");
+        _animator.SetTrigger(_openName);
     }
 }

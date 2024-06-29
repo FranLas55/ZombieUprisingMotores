@@ -49,6 +49,8 @@ public class Machinegun : Weapon
             _actualBullets--;
             _animator.SetTrigger(_onShootName);
 
+            UpdateUI(false);
+
             yield return new WaitForSeconds(_fireRate);
         }
 

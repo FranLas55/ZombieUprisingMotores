@@ -21,6 +21,7 @@ public class Gun : Weapon
 
             _actualBullets--;
             _animator.SetTrigger(_onShootName);
+            UpdateUI(true);
         }
         else
         {

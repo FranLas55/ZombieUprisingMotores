@@ -8,8 +8,6 @@ public class HealthKit : Interactuable
 
     public override void Buy(Player p) //HealPlayer
     {
-        //preguntarle al GM si el jugador tiene los puntos suficientes para comprarla
-            p.Heal(_hpToHeal);
-            //Restar puntos
+        p.Heal(_hpToHeal);
     }
 }

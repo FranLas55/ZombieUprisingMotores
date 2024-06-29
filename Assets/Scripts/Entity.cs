@@ -9,7 +9,7 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     [Header("Values")]
-    [SerializeField] private int _hp;
+    [SerializeField] protected int _hp;
     [SerializeField] protected float _speed;
 
     protected int _actualHp;
@@ -21,13 +21,13 @@ public abstract class Entity : MonoBehaviour
         _actualHp = _hp;
     }
 
-    public void Heal(int hp)
+    public virtual void Heal(int hp)
     {
         _actualHp += hp;
         print($"{gameObject.name} se curo {hp}. Vida actual: {_actualHp}");
     }
 
-    public void TakeDamage(int dmg)
+    public virtual void TakeDamage(int dmg)
     {
         _actualHp -= dmg;
 

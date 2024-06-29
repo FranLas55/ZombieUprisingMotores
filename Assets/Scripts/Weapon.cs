@@ -53,8 +53,8 @@ public abstract class Weapon : MonoBehaviour
     {
         if (_actualAmmo > _maxBullets)
         {
+            _actualAmmo -= (_maxBullets - _actualBullets);
             _actualBullets = _maxBullets;
-            _actualAmmo -= _maxBullets;
         }
         else
         {
@@ -66,6 +66,8 @@ public abstract class Weapon : MonoBehaviour
         {
             _actualAmmo = _maxAmmo;
         }
+
+        UpdateUI(_thisWeapon == WeaponEnum.Gun);
         _animator.SetTrigger(_onRechargeName);
         _player.shootAndRecharge = Shoot;
     }
@@ -78,6 +80,24 @@ public abstract class Weapon : MonoBehaviour
     public WeaponEnum ReturnType()
     {
         return _thisWeapon;
+    }
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        _actualBullets = _maxBullets;
+        _actualAmmo = _maxAmmo;
+
+        UpdateUI(_thisWeapon == WeaponEnum.Gun);
+    }
+
+    protected void UpdateUI(bool infinite)
+    {
+        GameManager.Instance.UpdateBullets(_actualBullets, _maxBullets, _actualAmmo, infinite);
     }
 
     private void NoBullets()
