@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gun : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Shoot()
     {
-        
+        base.Shoot();
+        if (_actualBullets > 0)
+        {
+            Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+
+            newBullet.InitializeBullet(_damage, _bulletLifeTime);
+
+            Vector3 shootDirection  = _shootPoint.forward;
+
+            newBullet.Shot(shootDirection.normalized);
+            _actualBullets--;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
