@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using weapon;
 
+//Francisco Lastra
+
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Entity
 {
@@ -11,16 +13,29 @@ public class Player : Entity
     [SerializeField] private int _shield;
     [SerializeField] private float _jumpForce;
     [SerializeField] private WeaponEnum _weapon = WeaponEnum.Gun;
+    [SerializeField] private Weapon[] _myWeapons;
+
+    [Header("Inputs")]
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private KeyCode _runKey = KeyCode.LeftShift;
+    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
 
-    private Vector3 _dir = new();
+    [Header("JumpRay")]
+    [SerializeField] private float _jumpRayRange = .5f;
+    [SerializeField] private LayerMask _jumpMask;
+
+    private Vector3 _dir = new(), _transformOffset = new();
+
+    private Rigidbody _rb;
 
     private Movement _movement;
 
+    private Ray _jumpRay;
+
     protected override void Start()
     {
-        _movement = new Movement(GetComponent<Rigidbody>(), _speed);
+        _rb = GetComponent<Rigidbody>();
+        _movement = new Movement(_rb, _speed);
         base.Start();
     }
 
@@ -30,6 +45,8 @@ public class Player : Entity
 
         if (Input.GetKey(_runKey)) _movement.ChangeSpeed(_runSpeed);
         else _movement.RestartSpeed();
+
+        if (IsGrounded() && Input.GetKeyDown(_jumpKey)) Jump();
     }
 
     private void FixedUpdate()
@@ -40,5 +57,39 @@ public class Player : Entity
     protected override void OnDeath()
     {
         
+    }
+
+    public void ChangeWeapon(WeaponEnum newWeapon)
+    {
+        print($"Cambió de arma, la nueva arma es {newWeapon}");
+        _weapon = newWeapon;
+
+        foreach(var weapon in _myWeapons)
+        {
+            //Fijarse si el enum del arma es igual a _weapon y si es el mismo prenderla, si no apagarla
+        }
+    }
+
+
+    private void Jump()
+    {
+        _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+    }
+
+    private bool IsGrounded()
+    {
+        _transformOffset = new Vector3 (transform.position.x,
+                                        transform.position.y + _jumpRayRange / 4,
+                                        transform.position.z);
+
+        _jumpRay = new Ray(_transformOffset, -transform.up);
+
+        return Physics.Raycast(_jumpRay, _jumpRayRange, _jumpMask);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(_jumpRay);
     }
 }

@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractuable
+public class Door : Interactuable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] string _openName = "onOpen";
+    Animator _animator;
+
+    private void Start()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void Buy(Player p)
     {
-        
+        //preguntarle al GM si el jugador tiene los puntos suficientes para comprarla
+            print("Se abrió la puerta");
+            _animator.SetTrigger(_openName);
+            //RestarPuntos
     }
 }
