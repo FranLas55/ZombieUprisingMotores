@@ -6,7 +6,7 @@ using UnityEngine;
 //Francisco Lastra
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, IDamageable
 {
     [Header("Values")]
     [SerializeField] protected int _hp;
@@ -15,10 +15,13 @@ public abstract class Entity : MonoBehaviour
     protected int _actualHp;
     protected Rigidbody _rb;
 
+    protected Movement _movement;
+
     protected virtual void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _actualHp = _hp;
+        _movement = new Movement(_rb, _speed);
     }
 
     public virtual void Heal(int hp)
@@ -37,10 +40,10 @@ public abstract class Entity : MonoBehaviour
             OnDeath();
         }
     }
-    protected virtual void Update()
+    /*protected virtual void Update()
     {
 
-    }
+    }*/
 
-    protected abstract void OnDeath();
+    public abstract void OnDeath();
 }

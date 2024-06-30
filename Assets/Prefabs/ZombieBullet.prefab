@@ -100,7 +100,7 @@ MonoBehaviour:
   scale: 0.15
   _bulletMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 584
 --- !u!54 &-6418944035160377694
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,63 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RangeZombie : Zombie
 {
-    [SerializeField] private Transform _playerTransform;
-    [SerializeField] private float _moveSpeed = 2f;
-    [SerializeField] private float _attackRange = 1.5f;
-    [SerializeField] private float _nextAttackTime;
-    [SerializeField] private float _attackRate = 1f;
-    [SerializeField] private int _attackDamage = 1;
-    [SerializeField] private float _aggroRange = 10f;
+    [SerializeField] Bullet _bulletPrefab;
+    [SerializeField] float _runSpeed;
+    [SerializeField] float _runRange;
+    [SerializeField] float _runTime;
+    [SerializeField] float _bulletSpeed;
 
-    protected override void Start()
-    {
-        base.Start();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    private bool _isRunning;
 
-    protected override void Update()
+    protected override void AttackAndMove()
     {
-        base.Update();
-        if (_playerTransform != null)
+        if (_isRunning) return;
+        if (distanceToPlayer <= _runRange)
         {
-           float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-            
-           if(distanceToPlayer <= _aggroRange)
-           {
-                if(distanceToPlayer > _attackRange)
-                {
-                    Vector3 directionPlayer = (_playerTransform.position - transform.position);
-                    transform.Translate(directionPlayer * _moveSpeed * Time.deltaTime, Space.World);
-                    transform.LookAt(_playerTransform);
-                }
-
-                if(Time.time >= _nextAttackTime && distanceToPlayer <= _attackRange)
-                {
-                    AttackPlayer();
-                    _nextAttackTime = Time.time + 1f / _attackRate;
-                }
-           }
-        }
-    }
-
-    private void AttackPlayer()
-    {
-        if (_playerTransform != null)
-        {
-            Player player = _playerTransform.GetComponent<Player>();
-            if (player != null)
+            //escapa por unos segundos
+            print("Debería correr");
+            if (!_isRunning)
             {
-                player.TakeDamage(_attackDamage);
+                print("Llamo a corrutina");
+                StartCoroutine(RunAwayFromPlayer());
             }
+            _canMove = true;
         }
+        else if (distanceToPlayer <= _attackRange)
+        {
+            StopAllCoroutines();
+            //Le dispara
+            if (_actualCooldown <= 0)
+            {
+                Bullet newBullet = Instantiate(_bulletPrefab, _attackPoint.position, Quaternion.identity);
+                newBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
+                newBullet.transform.forward = _playerDir;
+
+                _actualCooldown = _attackCooldown;
+            }
+            else
+            {
+                _actualCooldown -= Time.deltaTime;
+            }
+
+            _canMove = false;
+        }
+        else
+        {
+            _canMove = true;
+
+            StopAllCoroutines();
+            _movement.RestartSpeed();
+        }
+
+        transform.LookAt(_playerTransform.position);
     }
 
-    protected override void OnDeath()
+    IEnumerator RunAwayFromPlayer()
     {
-        Destroy(gameObject);
+        print("Entró a la corrutina");
+        _isRunning = true;
+        float t = 0;
+        _movement.ChangeSpeed(_runSpeed);
+
+        while (t < _runTime)
+        {
+            transform.forward = transform.position - _playerDir;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        _isRunning = false;
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _runRange);
+        Gizmos.DrawRay(transform.position + transform.up, _playerDir * _runRange);
     }
 }
 
