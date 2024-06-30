@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Francisco Lasta
+
 public class PlayerCamera : MonoBehaviour
 {
     [Header("Values")]

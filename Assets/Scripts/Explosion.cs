@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class Explosion : MonoBehaviour
 {
-    public float maxScale = 5f;
-    public float growthRate = 1f;
-    public int damage = 10;
-    public float duration = 3f;
+    private float maxScale = 5f;
+
+    [Header("Values")]
+    [SerializeField] private int damage = 10;
+    [SerializeField] private float duration = 1f;
 
     private float currentTime = 0f;
 
@@ -19,7 +22,8 @@ public class Explosion : MonoBehaviour
             float scale = Mathf.Lerp(0, maxScale, currentTime / duration);
             transform.localScale = new Vector3(scale, scale, scale);
         }
-        else
+        
+        if(transform.localScale.x >= maxScale)
         {
             Destroy(gameObject);
         }
@@ -27,15 +31,14 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Entity player = other.GetComponent<Entity>();
-        if (player != null)
+        if (other.TryGetComponent(out IDamageable entity))
         {
-            player.TakeDamage(damage);
+            entity.TakeDamage(damage);
         }
     }
 
-    public float GetRadius()
+    public void SetRadius(float radius)
     {
-        return maxScale;
+        maxScale = radius;
     }
 }

@@ -3,62 +3,110 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Carlos Coronel
+
 public class Zombie : Entity
 {
-    [SerializeField] private Transform _playerTransform;
-    [SerializeField] private float _moveSpeed = 2f;
-    [SerializeField] private float _attackRange = 1.5f; 
-    [SerializeField] private float _nextAttackTime;
-    [SerializeField] private float _attackRate = 1f;
-    [SerializeField] private int _attackDamage = 1; 
+    //[SerializeField] private float _moveSpeed = 2f;
+
+    [SerializeField] protected Transform _playerTransform;
+
+    protected bool _canMove;
+
+    protected Vector3 _playerDir = new();
+
+    protected float distanceToPlayer;
+
+    [Header("Values")]
+    [SerializeField] private int _pointsOnDeath = 7;
+    [SerializeField] protected float _attackRange = 1.5f;
+    [SerializeField] protected float _attackCooldown = 2f;
+    [SerializeField] protected int _attackDamage = 1;
+    [SerializeField] private LayerMask _attackMask;
+    [SerializeField] protected Transform _attackPoint;
+
+    protected float _actualCooldown;
+    private Ray _attackRay = new();
+    private RaycastHit _attackHit;
 
     protected override void Start()
     {
         base.Start();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //_playerTransform = Player.Instance.transform;
+        _actualCooldown = _attackCooldown;
     }
 
-    protected override void Update()
+    protected virtual void Update()
     {
-        base.Update();
-        if (_playerTransform != null)
-        {
-            Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
+        _playerDir = (_playerTransform.position - transform.position).normalized;
+        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
 
-            float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-            if (distanceToPlayer <= _attackRange)
+        AttackAndMove();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (_canMove)
+        {
+            _movement.Move(_playerDir);
+        }
+    }
+
+    protected virtual void AttackAndMove()
+    {
+        if (distanceToPlayer <= _attackRange)
+        {
+            if (_actualCooldown <= 0)
             {
-                if (Time.time >= _nextAttackTime)
+                _attackRay = new Ray(_attackPoint.position, _playerDir);
+
+                if(Physics.Raycast(_attackRay, out _attackHit ,_attackRange, _attackMask))
                 {
-                    AttackPlayer();
-                    _nextAttackTime = Time.time + 1f / _attackRate; 
+                    if(_attackHit.collider.TryGetComponent(out Player player))
+                    {
+                        player.TakeDamage(_attackDamage);
+                    }
                 }
 
+                print("Ataco");
+                _actualCooldown = _attackCooldown;
             }
             else
             {
-                transform.Translate(directionToPlayer * _moveSpeed * Time.deltaTime, Space.World);
-
-                transform.LookAt(_playerTransform);
+                _actualCooldown -= Time.deltaTime;
             }
-        }
-    }
 
-    private void AttackPlayer()
-    {
-        if (_playerTransform != null)
+            _canMove = false;
+        }
+        else
         {
-            Player player = _playerTransform.GetComponent<Player>();
-            if (player != null)
-            {
-                player.TakeDamage(_attackDamage);
-            }
+            _canMove = true;
+            transform.LookAt(_playerTransform.position);
         }
     }
 
-    protected override void OnDeath()
+    protected virtual void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(_attackRay);
+        Gizmos.DrawWireSphere(_attackPoint.position, _attackRange);
+    }
+
+    public override void OnDeath()
+    {
+        GameManager.Instance.AddPoints(_pointsOnDeath);
+
         Destroy(gameObject);
+    }
+
+    public void InitializeZombie(Transform target)
+    {
+        _playerTransform = target;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveZombie(this);
     }
 }
 

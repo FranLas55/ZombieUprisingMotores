@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Francisco Lastra
+
 public class Door : Interactuable
 {
     [SerializeField] string _openName = "onOpen";

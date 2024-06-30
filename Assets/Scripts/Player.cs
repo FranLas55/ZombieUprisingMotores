@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-using static GameManager;
 
 //Francisco Lastra
 
@@ -10,7 +9,6 @@ public class Player : Entity
 {
     [Header("Values")]
     [SerializeField] private float _runSpeed;
-    [SerializeField] private int _shield;
     [SerializeField] private float _jumpForce;
     [SerializeField] private WeaponEnum _weapon = WeaponEnum.Gun;
     [SerializeField] private Weapon[] _myWeapons;
@@ -32,27 +30,42 @@ public class Player : Entity
 
     private Vector3 _dir = new(), _transformOffset = new();
 
-    private Movement _movement;
-
     private Ray _jumpRay;
 
     private Weapon _actualWeapon;
 
-    public delegate void Shoot();
+    public delegate void VoidDelegate();
 
-    public Shoot shootAndRecharge;
+    public VoidDelegate shootAndRecharge;
+    public event VoidDelegate PlayerDead;
 
     public delegate bool Buy(int i);
     public event Buy BuyEvent;
 
 
-    public event VoidDelegate PlayerDead;
+    #region Singleton
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    #endregion
 
     protected override void Start()
     {
         base.Start();
         ChangeWeapon(WeaponEnum.Gun);
-        _movement = new Movement(_rb, _speed);
+        PlayerDead += ResetPlayer; 
+    }
+
+    private void ResetPlayer()
+    {
+        //SceneManager.LoadScene(0);
+        _actualHp = _hp;
+        ChangeWeapon(WeaponEnum.Gun);
+        transform.position = Vector3.zero;
     }
 
     private void Update()
@@ -81,14 +94,12 @@ public class Player : Entity
 
     }
 
-
-
     private void FixedUpdate()
     {
         _movement.Move(_dir);
     }
 
-    protected override void OnDeath()
+    public override void OnDeath()
     {
         //Puede pasar algo como no
         PlayerDead();

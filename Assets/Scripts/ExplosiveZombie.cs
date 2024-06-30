@@ -2,53 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class ExplosiveZombie : Zombie
 {
-    [SerializeField] private GameObject _explosionPrefab;
+    [SerializeField] private Explosion _explosionPrefab;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _explosionRadius;
 
-    private Transform _playerTransform;
-    private bool _isDead = false;
-    private bool _hasExploted = false;
-
-    protected override void Start()
-    {
-        base.Start();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    private bool _canExplode = false;
 
     protected override void Update()
     {
         base.Update();
 
-        if (_isDead && !_hasExploted)
+        if (_actualHp <= (float)_hp / 2)
+        {
+            _canExplode = true;
+            _movement.ChangeSpeed(_runSpeed);
+        }
+
+        if (_canExplode && distanceToPlayer <= _explosionRadius * .25f)
         {
             Explode();
-
-            if (_playerTransform != null)
-            {
-                float distanceToPLayer = Vector3.Distance(transform.position, _playerTransform.position);
-                float explosionRadius = _explosionPrefab.GetComponent<Explosion>().GetRadius();
-                if (distanceToPLayer <= explosionRadius)
-                {
-                    Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-                    _hasExploted =true;
-                }
-            }
         }
     }
-        protected override void OnDeath()
-        {
-            base.OnDeath();
-            _isDead = true;
-            _hasExploted = false;
 
-        }
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Explode();
+    }
 
     private void Explode()
     {
-        Instantiate(_explosionPrefab,transform.position, Quaternion.identity);
+        Explosion myExplosion = Instantiate(_explosionPrefab, transform.position + transform.up, Quaternion.identity);
+        myExplosion.SetRadius(_explosionRadius);
         Destroy(gameObject);
     }
-    
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position + transform.up, _playerDir* _explosionRadius * .25f);
+    }
+
 }
 

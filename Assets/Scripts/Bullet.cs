@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     //private Entity _ignoreType;
 
     //SetDamage y SetDir en uno solo
-    public void InitializeBullet(int damage, float lifeTime, float speed/*, Entity shooter*/)
+    public void InitializeBullet(int damage, float lifeTime, float speed/*,Entity shooter*/)
     {
         _damage = damage;
         _lifeTime = lifeTime;
@@ -43,13 +43,20 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         _movement.Move(transform.forward);
-        //Que le haga daño a IDamageable MENOS al tipo que la disparó, si un zombie dispara, no hace daño a zombie
+    }
 
+    private void Update()
+    {
+        //Que le haga daño a IDamageable MENOS al tipo que la disparó, si un zombie dispara, no hace daño a zombie
         _target = HitObject();
 
         if (_target != null)
         {
             //hace daño a IDamageable
+            if(_target.TryGetComponent(out IDamageable hitObj))
+            {
+                hitObj.TakeDamage(_damage);
+            }
             Destroy(gameObject);
         }
     }
