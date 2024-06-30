@@ -63,7 +63,7 @@ public class Player : Entity
     private void ResetPlayer()
     {
         //SceneManager.LoadScene(0);
-        _actualHp = _hp;
+        Heal(_hp);
         ChangeWeapon(WeaponEnum.Gun);
         transform.position = Vector3.zero;
     }

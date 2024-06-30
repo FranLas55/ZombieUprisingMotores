@@ -180,6 +180,9 @@ public class GameManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
+        _points = 0;
+        AddPoints(0);
+
         print("El player murió. Fin del juego");
     }
 }
