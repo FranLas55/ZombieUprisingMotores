@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class ExplosiveZombie : Zombie
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject _explosionPrefab;
+
+    private Transform _playerTransform;
+    private bool _isDead = false;
+    private bool _hasExploted = false;
+
+    protected override void Start()
     {
-        
+        base.Start();
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
+
+        if (_isDead && !_hasExploted)
+        {
+            Explode();
+
+            if (_playerTransform != null)
+            {
+                float distanceToPLayer = Vector3.Distance(transform.position, _playerTransform.position);
+                float explosionRadius = _explosionPrefab.GetComponent<Explosion>().GetRadius();
+                if (distanceToPLayer <= explosionRadius)
+                {
+                    Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+                    _hasExploted =true;
+                }
+            }
+        }
     }
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+            _isDead = true;
+            _hasExploted = false;
+
+        }
+
+    private void Explode()
+    {
+        Instantiate(_explosionPrefab,transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+    
 }
+
