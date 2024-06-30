@@ -37,6 +37,10 @@ public abstract class Entity : MonoBehaviour
             OnDeath();
         }
     }
+    protected virtual void Update()
+    {
+
+    }
 
     protected abstract void OnDeath();
 }
