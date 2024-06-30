@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class Explosion : MonoBehaviour
 {
     private float maxScale = 5f;

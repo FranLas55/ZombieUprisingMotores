@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class ExplosiveBarrel : MonoBehaviour, IDamageable
 {
     [SerializeField] Explosion _explosionPrefab;
@@ -9,11 +11,21 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
 
     int _life = 3;
 
+    private void Start()
+    {
+        Player.Instance.PlayerDead += Enable;
+    }
+
     public void OnDeath()
     {
         Explosion explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         explosion.SetRadius(_explosionRadius);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void Enable()
+    {
+        this.gameObject.SetActive(true);
     }
 
     public void TakeDamage(int dmg)

@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Tobias
+
 public class GameManager : MonoBehaviour
 {
     private int _points;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _player = Player.Instance;
+
         _player.BuyEvent += Buy;
         _player.PlayerDead += GameOver;
         AddPoints(0);
@@ -52,9 +56,6 @@ public class GameManager : MonoBehaviour
         //Actualizar UI
         _pointsText.text = $"Puntos: {_points}";
     }
-
-
-
 
     private void Update()
     {
@@ -96,7 +97,6 @@ public class GameManager : MonoBehaviour
 
             _zombiesInScene.Add(newZombie);
             print("zombies en escena = " + _zombiesInScene.Count);
-
 
             z++;
             if (z < _zombiesToSpawn) yield return new WaitForSeconds(_spawnDelay);
@@ -173,6 +173,13 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        StopAllCoroutines();
+
+        foreach (var item in _zombiesInScene)
+        {
+            Destroy(item.gameObject);
+        }
+
         print("El player murió. Fin del juego");
     }
 }

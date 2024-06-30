@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Carlos Coronel
+
 public class Zombie : Entity
 {
     //[SerializeField] private float _moveSpeed = 2f;

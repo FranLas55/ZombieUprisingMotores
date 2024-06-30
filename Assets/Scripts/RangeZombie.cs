@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class RangeZombie : Zombie
 {
     [SerializeField] Bullet _bulletPrefab;

@@ -27,6 +27,12 @@ public abstract class Entity : MonoBehaviour, IDamageable
     public virtual void Heal(int hp)
     {
         _actualHp += hp;
+
+        if(_actualHp > _hp)
+        {
+            _actualHp = _hp;
+        }
+
         print($"{gameObject.name} se curo {hp}. Vida actual: {_actualHp}");
     }
 

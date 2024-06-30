@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
-using static GameManager;
 
 //Francisco Lastra
 
@@ -58,6 +57,15 @@ public class Player : Entity
     {
         base.Start();
         ChangeWeapon(WeaponEnum.Gun);
+        PlayerDead += ResetPlayer; 
+    }
+
+    private void ResetPlayer()
+    {
+        //SceneManager.LoadScene(0);
+        _actualHp = _hp;
+        ChangeWeapon(WeaponEnum.Gun);
+        transform.position = Vector3.zero;
     }
 
     private void Update()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using weapon;
 
+//Francisco Lastra
+
 public class WeaponStand : Interactuable
 {
     [Tooltip("If it has more than one weapon is because it is a chest")]
