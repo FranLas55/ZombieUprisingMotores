@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 {
     private int _points;
     private int _enemyCount;
+    [Header("Spawner")]
     [SerializeField] private Zombie[] _zombiePrefabs;
     [SerializeField] private Player _player;
     [SerializeField] private Transform[] _spawnPoints;
@@ -31,6 +32,15 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("Gives you a specified amount of points")] private KeyCode _pointsKey = KeyCode.V;
     [SerializeField, Tooltip("Amount of points")] private int _cheatPoints;
 
+    [Header("Buyable")] 
+    [SerializeField] private string[] _buyKeys = new string[7];
+    [SerializeField] private int[] _buyValues = new int[7];
+    
+    // 3 door + 3 weapon stand + 1 health kit = 7
+
+
+    Dictionary<string, int> buyDictionary = new();
+
     #region Singleton
     public static GameManager Instance { get; private set; }
 
@@ -48,6 +58,13 @@ public class GameManager : MonoBehaviour
         _player.BuyEvent += Buy;
         _player.PlayerDead += GameOver;
         AddPoints(0);
+
+        for (int i = 0; i < _buyKeys.Length; i++)
+        {
+            buyDictionary.Add(_buyKeys[i], _buyValues[i]);
+            
+            //print($"key = {_buyKeys[i]} value = {buyDictionary[_buyKeys[i]]}");
+        }
     }
 
     public void AddPoints(int points)
@@ -85,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         if (hasDelay) yield return new WaitForSeconds(_roundDelay);
 
-        print("Comenzó la ronda");
+        print("Comenzï¿½ la ronda");
         int z = 0;
         _isSpawning = true;
 
@@ -183,6 +200,23 @@ public class GameManager : MonoBehaviour
         _points = 0;
         AddPoints(0);
 
-        print("El player murió. Fin del juego");
+        print("El player muriï¿½. Fin del juego");
+    }
+
+    
+    /// <summary>
+    /// Asks for the value of a key on the buyDictionary
+    /// </summary>
+    /// <param name="key">key name on the dictionary</param>
+    /// <returns>if the key exists returns its value. If not, returns the max value of int in order to not buy the item</returns>
+    public int GetKeyValue(string key)
+    {
+        if (buyDictionary.ContainsKey(key))
+        {
+            return buyDictionary[key];
+        }
+        
+        
+        return int.MaxValue;
     }
 }

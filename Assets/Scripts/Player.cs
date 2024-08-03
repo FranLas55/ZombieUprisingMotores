@@ -107,7 +107,7 @@ public class Player : Entity
 
     public void ChangeWeapon(WeaponEnum newWeapon)
     {
-        print($"Cambió de arma, la nueva arma es {newWeapon}");
+        print($"CambiÃ³ de arma, la nueva arma es {newWeapon}");
         _weapon = newWeapon;
 
         foreach (var weapon in _myWeapons)
@@ -171,18 +171,18 @@ public class Player : Entity
 
             if (colliders.Length > 0)
             {
-                print($"Colicioné con {colliders[0].name}");
+                print($"ColicionÃ© con {colliders[0].name}");
 
                 if (colliders[0].TryGetComponent(out Interactuable objToBuy))
                 {
-                    if (BuyEvent(objToBuy.ReturnCost()))
+                    if (BuyEvent(GameManager.Instance.GetKeyValue(objToBuy.ReturnKey())))
                     {
                         print("Comprando el obj");
                         objToBuy.Buy(this);
                     }
                     else
                     {
-                        //Algo en la UI que muestre que no compró
+                        //Algo en la UI que muestre que no comprÃ³
                         Debug.Log("No pudo comprar");
                     }
                 }
