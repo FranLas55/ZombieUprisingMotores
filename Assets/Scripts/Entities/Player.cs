@@ -40,7 +40,7 @@ public class Player : Entity
     public event VoidDelegate PlayerDead;
 
     public delegate bool Buy(int i);
-    public event Buy BuyEvent;
+    public Buy BuyEvent;
 
 
     #region Singleton
