@@ -318,5 +318,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d707ee767276e46a09818ad786bed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 10
+  _key: HealthKit
   _hpToHeal: 3

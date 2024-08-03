@@ -6,12 +6,12 @@ using UnityEngine;
 
 public abstract class Interactuable : MonoBehaviour 
 {
-    [SerializeField] int _cost = 10;
+    [SerializeField] string _key = "";
 
     public abstract void Buy(Player player);
 
-    public int ReturnCost()
+    public string ReturnKey()
     {
-        return _cost;
+        return _key;
     }
 }

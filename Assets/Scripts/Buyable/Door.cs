@@ -19,7 +19,7 @@ public class Door : Interactuable
 
     public override void Buy(Player p)
     {
-        print("Se abrió la puerta");
+        print("Se abriÃ³ la puerta");
         _animator.SetTrigger(_openName);
     }
 
