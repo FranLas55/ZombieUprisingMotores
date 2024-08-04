@@ -21,7 +21,7 @@ public class Machinegun : Weapon
 
         if(_actualBullets <= 0)
         {
-            _player.shootAndRecharge = Recharge;
+            Recharge();
         }
     }
 
