@@ -19,12 +19,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _roundDelay;
     [SerializeField] private bool _canStartSpawning;
     [SerializeField, Tooltip("Number of zombies to be spawned")] private int _zombiesToSpawn;
+    [SerializeField] private PlayerCamera _playerCamera;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _pointsText;
     [SerializeField] private TextMeshProUGUI _bulletsText;
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private Image _lifeBar;
+    public Canvas gameOverCanvas;
 
     [Header("Cheats")]
     [SerializeField, Tooltip("Enable/Disable rounds")] private KeyCode _roundKey = KeyCode.L;
@@ -71,6 +73,8 @@ public class GameManager : MonoBehaviour
         {
             _startRoundsAtStart = true;
         }
+
+        gameOverCanvas.enabled = false;
     }
 
     public void AddPoints(int points)
@@ -206,9 +210,25 @@ public class GameManager : MonoBehaviour
 
         _points = 0;
         AddPoints(0);
-        //Tobi, acá desactivas el Game manager y player. Despues haces un script con los botones y lo activas
         
+        _player.enabled = false;
+
+        _playerCamera.enabled = false;
+
+       
+
+
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.enabled = true;
+
+        }
+
+       /* Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;*/
+
         _startRoundsAtStart = true;
+        this.enabled = false;
 
         print("El player murio. Fin del juego");
     }
