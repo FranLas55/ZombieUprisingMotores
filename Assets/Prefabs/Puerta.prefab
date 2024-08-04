@@ -50,7 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: 
   _openName: OnOpen
-  _resetName: onRestart
+  _resetName: OnRestart
+  _animator: {fileID: 0}
 --- !u!33 &2325337250052388586
 MeshFilter:
   m_ObjectHideFlags: 0
