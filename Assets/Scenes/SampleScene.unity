@@ -1574,7 +1574,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 127039141}
+  m_Mesh: {fileID: 512772412}
 --- !u!33 &268693183
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -18688,10 +18688,11 @@ MonoBehaviour:
   - {fileID: 1460964755}
   - {fileID: 1522712654}
   - {fileID: 2123798670}
-  _interactKey: 101
-  _runKey: 304
-  _jumpKey: 32
-  _rechargeKey: 114
+  _inputs:
+    interactKey: 101
+    runKey: 304
+    jumpKey: 32
+    rechargeKey: 114
   _jumpRayRange: 0.5
   _jumpMask:
     serializedVersion: 2
