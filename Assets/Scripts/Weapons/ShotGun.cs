@@ -34,7 +34,7 @@ public class ShotGun : Weapon
         }
         else
         {
-            _player.shootAndRecharge = Recharge;
+            Recharge();
         }
     }
 }

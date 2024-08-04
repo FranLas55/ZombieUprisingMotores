@@ -45,7 +45,6 @@ public class Player : Entity
 
     public delegate void VoidDelegate();
 
-    public VoidDelegate shootAndRecharge;
     public event VoidDelegate PlayerDead;
 
     public delegate bool Buy(int i);
@@ -88,7 +87,7 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(0))
         {
-            shootAndRecharge();
+            _actualWeapon.Shoot();
         }
 
         if (Input.GetKeyDown(_inputs.rechargeKey)) _actualWeapon.Recharge();
@@ -134,7 +133,7 @@ public class Player : Entity
             }
         }
 
-        shootAndRecharge = _actualWeapon.Shoot;
+        
         _actualWeapon.Initialize();
     }
 

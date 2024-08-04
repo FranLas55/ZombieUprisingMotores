@@ -69,7 +69,6 @@ public abstract class Weapon : MonoBehaviour
 
         UpdateUI(_thisWeapon == WeaponEnum.Gun);
         _animator.SetTrigger(_onRechargeName);
-        _player.shootAndRecharge = Shoot;
     }
 
     public int ReturnBullets() //para la UI
