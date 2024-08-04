@@ -5,6 +5,16 @@ using weapon;
 
 //Francisco Lastra
 
+[System.Serializable]
+public struct PlayerInputs
+{
+    public KeyCode interactKey;
+    public KeyCode runKey;
+    public KeyCode jumpKey;
+    public KeyCode rechargeKey;
+}
+
+
 public class Player : Entity
 {
     [Header("Values")]
@@ -14,10 +24,7 @@ public class Player : Entity
     [SerializeField] private Weapon[] _myWeapons;
 
     [Header("Inputs")]
-    [SerializeField] private KeyCode _interactKey = KeyCode.E;
-    [SerializeField] private KeyCode _runKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
-    [SerializeField] private KeyCode _rechargeKey = KeyCode.R;
+    [SerializeField]private PlayerInputs _inputs;
 
     [Header("JumpRay")]
     [SerializeField] private float _jumpRayRange = .5f;
@@ -72,17 +79,17 @@ public class Player : Entity
     {
         _dir = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetKey(_runKey)) _movement.ChangeSpeed(_runSpeed);
+        if (Input.GetKey(_inputs.runKey)) _movement.ChangeSpeed(_runSpeed);
         else _movement.RestartSpeed();
 
-        if (IsGrounded() && Input.GetKeyDown(_jumpKey)) Jump();
+        if (IsGrounded() && Input.GetKeyDown(_inputs.jumpKey)) Jump();
 
         if (Input.GetMouseButtonDown(0))
         {
             shootAndRecharge();
         }
 
-        if (Input.GetKeyDown(_rechargeKey)) _actualWeapon.Recharge();
+        if (Input.GetKeyDown(_inputs.rechargeKey)) _actualWeapon.Recharge();
 
         BuyObj();
 
@@ -165,7 +172,7 @@ public class Player : Entity
     private void BuyObj()
     {
         Collider[] colliders = Physics.OverlapBox(_center.position, _extends / 2, Quaternion.identity, _buyableMask);
-        if (Input.GetKeyDown(_interactKey))
+        if (Input.GetKeyDown(_inputs.interactKey))
         {
             Debug.Log("aprete e");
 
