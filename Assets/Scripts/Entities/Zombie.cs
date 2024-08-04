@@ -17,8 +17,7 @@ public class Zombie : Entity
 
     protected float distanceToPlayer;
 
-    [Header("Values")]
-    [SerializeField] private int _pointsOnDeath = 7;
+    [Header("Values")] [SerializeField] private int _pointsOnDeath = 7;
     [SerializeField] protected float _attackRange = 1.5f;
     [SerializeField] protected float _attackCooldown = 2f;
     [SerializeField] protected int _attackDamage = 1;
@@ -48,7 +47,7 @@ public class Zombie : Entity
     {
         if (_canMove)
         {
-            _movement.Move(_playerDir);
+            if (!IsBlocked(_playerDir)) _movement.Move(_playerDir);
         }
     }
 
@@ -60,9 +59,9 @@ public class Zombie : Entity
             {
                 _attackRay = new Ray(_attackPoint.position, _playerDir);
 
-                if(Physics.Raycast(_attackRay, out _attackHit ,_attackRange, _attackMask))
+                if (Physics.Raycast(_attackRay, out _attackHit, _attackRange, _attackMask))
                 {
-                    if(_attackHit.collider.TryGetComponent(out Player player))
+                    if (_attackHit.collider.TryGetComponent(out Player player))
                     {
                         player.TakeDamage(_attackDamage);
                     }
@@ -109,6 +108,3 @@ public class Zombie : Entity
         GameManager.Instance.RemoveZombie(this);
     }
 }
-
-
-

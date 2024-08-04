@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     // 3 door + 3 weapon stand + 1 health kit = 7
 
 
-    Dictionary<string, int> buyDictionary = new();
+    Dictionary<string, int> _buyDictionary = new();
+    private bool _startRoundsAtStart;
 
     #region Singleton
     public static GameManager Instance { get; private set; }
@@ -61,9 +62,14 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < _buyKeys.Length; i++)
         {
-            buyDictionary.Add(_buyKeys[i], _buyValues[i]);
+            _buyDictionary.Add(_buyKeys[i], _buyValues[i]);
             
             //print($"key = {_buyKeys[i]} value = {buyDictionary[_buyKeys[i]]}");
+        }
+
+        if (_canStartSpawning)
+        {
+            _startRoundsAtStart = true;
         }
     }
 
@@ -88,9 +94,10 @@ public class GameManager : MonoBehaviour
     {
         //SISTEMA DE RONDAS O CON ALGUN BOTON QUE APAREZCAN ALGUNOS ZOMBIES
         //asignarle por a un evento (Cuando muere) de Zombie el metodo AddPoints
-        if (Input.GetKeyDown(_spawnKey))
+        if (Input.GetKeyDown(_spawnKey) || _startRoundsAtStart)
         {
             //Spawnear zombiesToSpawn una sola vez
+            _startRoundsAtStart = false;
             StartCoroutine(SpawnCor(false));
         }
     }
@@ -199,8 +206,11 @@ public class GameManager : MonoBehaviour
 
         _points = 0;
         AddPoints(0);
+        //Tobi, acá desactivas el Game manager y player. Despues haces un script con los botones y lo activas
+        
+        _startRoundsAtStart = true;
 
-        print("El player muri�. Fin del juego");
+        print("El player murio. Fin del juego");
     }
 
     
@@ -211,9 +221,9 @@ public class GameManager : MonoBehaviour
     /// <returns>if the key exists returns its value. If not, returns the max value of int in order to not buy the item</returns>
     public int GetKeyValue(string key)
     {
-        if (buyDictionary.ContainsKey(key))
+        if (_buyDictionary.ContainsKey(key))
         {
-            return buyDictionary[key];
+            return _buyDictionary[key];
         }
         
         

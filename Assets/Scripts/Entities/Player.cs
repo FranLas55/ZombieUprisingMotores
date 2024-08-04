@@ -26,15 +26,17 @@ public class Player : Entity
     [Header("Inputs")]
     [SerializeField]private PlayerInputs _inputs;
 
-    [Header("JumpRay")]
-    [SerializeField] private float _jumpRayRange = .5f;
-    [SerializeField] private LayerMask _jumpMask;
 
     [Header("InteractBox")]
     [SerializeField] private Vector3 _extends;
     [SerializeField] private Transform _center;
     [SerializeField] private LayerMask _buyableMask;
 
+    [Header("Rays")]
+    [SerializeField] private float _jumpRayRange = .5f;
+    [SerializeField] private LayerMask _jumpMask;
+    
+    
     private Vector3 _dir = new(), _transformOffset = new();
 
     private Ray _jumpRay;
@@ -103,6 +105,7 @@ public class Player : Entity
 
     private void FixedUpdate()
     {
+        if (IsBlocked(_dir)) _dir = Vector3.zero;
         _movement.Move(_dir);
     }
 
@@ -157,7 +160,7 @@ public class Player : Entity
     {
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
-
+    
     private bool IsGrounded()
     {
         _transformOffset = new Vector3(transform.position.x,
