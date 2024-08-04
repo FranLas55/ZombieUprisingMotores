@@ -11,7 +11,11 @@ public abstract class Entity : MonoBehaviour, IDamageable
     [Header("Values")]
     [SerializeField] protected int _hp;
     [SerializeField] protected float _speed;
+    
+    [SerializeField] private float _wallRayRange = .6f;
+    [SerializeField] private LayerMask _wallMask;
 
+    private Ray _wallRay;
     protected int _actualHp;
     protected Rigidbody _rb;
 
@@ -52,4 +56,11 @@ public abstract class Entity : MonoBehaviour, IDamageable
     }*/
 
     public abstract void OnDeath();
+    
+    protected bool IsBlocked(Vector3 dir)
+    {
+        _wallRay = new Ray(transform.position, dir.normalized);
+
+        return Physics.Raycast(_wallRay, _wallRayRange, _wallMask);
+    }
 }

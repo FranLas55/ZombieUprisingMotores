@@ -296,8 +296,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 10
   _speed: 2.5
+  _wallRayRange: 0.6
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 1280
   _playerTransform: {fileID: 0}
-  _pointsOnDeath: 7
+  _pointsOnDeath: 55
   _attackRange: 1.5
   _attackCooldown: 0.75
   _attackDamage: 1
