@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         _player = Player.Instance;
 
         _player.BuyEvent += Buy;
-        _player.PlayerDead += GameOver;
+        _player.GameOverEvent += GameOver;
         AddPoints(0);
 
         for (int i = 0; i < _buyKeys.Length; i++)
@@ -218,10 +218,19 @@ public class GameManager : MonoBehaviour
         _playerCamera.enabled = false;
 
 
-        if (gameOverCanvas != null)
+        if (_player.HasDied)
         {
-            gameOverCanvas.enabled = true;
-
+            if (gameOverCanvas != null)
+            {
+                gameOverCanvas.enabled = true;
+            }
+        }
+        else
+        {
+            if (winCanvas != null)
+            {
+                winCanvas.enabled = true;
+            }
         }
 
        

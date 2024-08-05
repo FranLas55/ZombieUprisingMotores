@@ -7,32 +7,11 @@ using UnityEngine;
 
 public class Meta : MonoBehaviour
 {
-    //[SerializeField] private Canvas _canvasToActive;
-    
-   
-   /* private void Start()
-    {
-        if (_canvasToActive != null)
-        {
-            _canvasToActive.enabled = false;
-        }
-    }*/
-
     private void OnCollisionEnter(Collision collision)
     {
-       if (collision.gameObject.GetComponent<Player>())
+       if (collision.gameObject.TryGetComponent(out Player player))
        {
-            GameManager.Instance.Win();
-           // Cursor.lockState = CursorLockMode.None;
-           // ActiveCanvas();
+           player.Win();
        }
     }
-
-    /*private void ActiveCanvas()
-    {
-        if ( _canvasToActive != null )
-        {
-            _canvasToActive.enabled = true;
-        }
-    }*/
 }

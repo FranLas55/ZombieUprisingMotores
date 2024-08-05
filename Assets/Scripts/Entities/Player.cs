@@ -45,10 +45,12 @@ public class Player : Entity
 
     public delegate void VoidDelegate();
 
-    public event VoidDelegate PlayerDead;
+    public event VoidDelegate GameOverEvent;
 
     public delegate bool Buy(int i);
     public Buy BuyEvent;
+    
+    public bool HasDied { get; private set; }
 
 
     #region Singleton
@@ -65,13 +67,14 @@ public class Player : Entity
     {
         base.Start();
         ChangeWeapon(WeaponEnum.Gun);
-        PlayerDead += ResetPlayer; 
+        GameOverEvent += ResetPlayer; 
     }
 
     private void ResetPlayer()
     {
         //SceneManager.LoadScene(0);
         Heal(_hp);
+        HasDied = false;
         ChangeWeapon(WeaponEnum.Gun);
         transform.position = Vector3.zero;
     }
@@ -102,6 +105,11 @@ public class Player : Entity
 
     }
 
+    public void Win()
+    {
+        GameOverEvent();
+    }
+
     private void FixedUpdate()
     {
         if (IsBlocked(_dir)) _dir = Vector3.zero;
@@ -111,7 +119,8 @@ public class Player : Entity
     public override void OnDeath()
     {
         //Puede pasar algo como no
-        PlayerDead();
+        HasDied = true;
+        GameOverEvent();
     }
 
     public void ChangeWeapon(WeaponEnum newWeapon)

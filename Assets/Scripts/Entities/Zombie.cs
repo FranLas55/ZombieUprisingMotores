@@ -41,6 +41,8 @@ public class Zombie : Entity
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
 
         AttackAndMove();
+        
+        if(transform.position.y <= -10) TakeDamage(1000);
     }
 
     protected virtual void FixedUpdate()
