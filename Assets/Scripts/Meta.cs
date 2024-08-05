@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Tobias Rodriguez Vieyra
+
 public class Meta : MonoBehaviour
 {
     //[SerializeField] private Canvas _canvasToActive;
