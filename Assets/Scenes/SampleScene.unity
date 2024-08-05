@@ -9397,7 +9397,7 @@ MonoBehaviour:
   - {fileID: 1030244960}
   _spawnDelay: 2
   _roundDelay: 3
-  _canStartSpawning: 0
+  _canStartSpawning: 1
   _zombiesToSpawn: 10
   _playerCamera: {fileID: 963194229}
   _pointsText: {fileID: 2082785135}
