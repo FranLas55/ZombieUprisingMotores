@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private Image _lifeBar;
     public Canvas gameOverCanvas;
+    public Canvas winCanvas;
 
     [Header("Cheats")]
     [SerializeField, Tooltip("Enable/Disable rounds")] private KeyCode _roundKey = KeyCode.L;
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         }
 
         gameOverCanvas.enabled = false;
+        winCanvas.enabled = false;
     }
 
     public void AddPoints(int points)
@@ -215,14 +217,14 @@ public class GameManager : MonoBehaviour
 
         _playerCamera.enabled = false;
 
-       
-
 
         if (gameOverCanvas != null)
         {
             gameOverCanvas.enabled = true;
 
         }
+
+       
 
        /* Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;*/
@@ -232,8 +234,38 @@ public class GameManager : MonoBehaviour
 
         print("El player murio. Fin del juego");
     }
+    public void Win()
+    {
+        StopAllCoroutines();
 
-    
+        foreach (var item in _zombiesInScene)
+        {
+            Destroy(item.gameObject);
+        }
+
+        _points = 0;
+        AddPoints(0);
+
+        _player.enabled = false;
+
+        _playerCamera.enabled = false;
+
+
+        if (winCanvas != null)
+        {
+            winCanvas.enabled = true;
+        }
+
+        /* Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;*/
+
+        _startRoundsAtStart = true;
+        this.enabled = false;
+
+        print("El player gano. Fin del juego");
+    }
+
+
     /// <summary>
     /// Asks for the value of a key on the buyDictionary
     /// </summary>
