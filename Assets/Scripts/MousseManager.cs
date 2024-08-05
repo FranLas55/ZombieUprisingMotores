@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Carlos Coronel
+
 public class MousseManager : MonoBehaviour
 {
     [SerializeField] private Canvas _gameOverCanvas;
