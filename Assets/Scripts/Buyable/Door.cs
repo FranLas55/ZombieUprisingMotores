@@ -16,7 +16,7 @@ public class Door : Interactuable
     {
         hasBeenBought = false;
         if(_animator == null) _animator = GetComponent<Animator>();
-        Player.Instance.PlayerDead += Restart;
+        Player.Instance.GameOverEvent += Restart;
     }
 
 

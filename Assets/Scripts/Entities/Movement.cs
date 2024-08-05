@@ -20,6 +20,7 @@ public class Movement
 
     public void Move(Vector3 dir)
     {
+        if (dir.magnitude <= .5f) return;
         _rb.MovePosition(_rb.transform.position + (dir.normalized * Time.deltaTime * _speed));
     }
 

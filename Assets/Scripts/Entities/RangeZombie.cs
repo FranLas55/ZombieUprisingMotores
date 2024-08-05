@@ -21,7 +21,7 @@ public class RangeZombie : Zombie
         if (distanceToPlayer <= _runRange)
         {
             //escapa por unos segundos
-            print("Debería correr");
+            print("DeberÃ­a correr");
             if (!_isRunning)
             {
                 print("Llamo a corrutina");
@@ -61,7 +61,7 @@ public class RangeZombie : Zombie
 
     IEnumerator RunAwayFromPlayer()
     {
-        print("Entró a la corrutina");
+        print("EntrÃ³ a la corrutina");
         _isRunning = true;
         float t = 0;
         _movement.ChangeSpeed(_runSpeed);

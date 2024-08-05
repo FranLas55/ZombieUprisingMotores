@@ -13,7 +13,7 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Player.Instance.PlayerDead += Enable;
+        Player.Instance.GameOverEvent += Enable;
     }
 
     public void OnDeath()

@@ -16,15 +16,22 @@ public class RestartButton : MonoBehaviour
             _gameManager.enabled = true;
             _player.enabled = true;
             _playerCamara.enabled = true;
+            
+            _player.Heal(10);
 
 
             if (_gameManager.gameOverCanvas != null)
             {
                 _gameManager.gameOverCanvas.enabled = false;
             }
+
+            if (_gameManager.winCanvas != null)
+            {
+                _gameManager.winCanvas.enabled = false;
+            }
         }
 
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
