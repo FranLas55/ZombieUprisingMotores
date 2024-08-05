@@ -5853,10 +5853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b5ae6e2ba204040898f07f181f5a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasToActive: {fileID: 1361010051}
-  _player: {fileID: 1376603340}
-  _camera: {fileID: 963194229}
-  _gameManager: {fileID: 686136126}
 --- !u!1 &389565364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6132,8 +6128,6 @@ RectTransform:
   - {fileID: 2082785134}
   - {fileID: 70436561}
   - {fileID: 1550330687}
-  - {fileID: 1361010048}
-  - {fileID: 1348030646}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9403,7 +9397,7 @@ MonoBehaviour:
   - {fileID: 1030244960}
   _spawnDelay: 2
   _roundDelay: 3
-  _canStartSpawning: 1
+  _canStartSpawning: 0
   _zombiesToSpawn: 10
   _playerCamera: {fileID: 963194229}
   _pointsText: {fileID: 2082785135}
@@ -9411,6 +9405,7 @@ MonoBehaviour:
   _ammoText: {fileID: 1614983185}
   _lifeBar: {fileID: 958772111}
   gameOverCanvas: {fileID: 1348030645}
+  winCanvas: {fileID: 1361010051}
   _roundKey: 108
   _spawnKey: 111
   _pointsKey: 118
@@ -15228,6 +15223,7 @@ GameObject:
   - component: {fileID: 973660693}
   - component: {fileID: 973660692}
   - component: {fileID: 973660691}
+  - component: {fileID: 973660695}
   m_Layer: 8
   m_Name: StairKey
   m_TagString: Untagged
@@ -15337,6 +15333,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973660689}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &973660695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973660689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ac64c78d7f41240b59cda9d1760351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &976632025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8663163451317192736, guid: b1a42db9eb411b041aa15493155d5e1d, type: 3}
@@ -24022,10 +24030,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -24063,20 +24071,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348030642}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0265, y: 1.0265, z: 1.0265}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1194085529}
   - {fileID: 133249622}
-  m_Father: {fileID: 426952778}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1348030648
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24099,6 +24107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverCanvas: {fileID: 1348030645}
   _gameManager: {fileID: 686136126}
+  _winCanvas: {fileID: 1361010051}
 --- !u!1001 &1348126694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24299,10 +24308,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1361010048}
   - component: {fileID: 1361010051}
+  - component: {fileID: 1361010052}
   - component: {fileID: 1361010050}
   - component: {fileID: 1361010049}
-  - component: {fileID: 1361010052}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: WinCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24316,20 +24325,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361010047}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1382290067}
   - {fileID: 1461840556}
-  m_Father: {fileID: 426952778}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1361010049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24359,10 +24368,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -24405,8 +24414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddddde8afa912e24795e952ee8ed3529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameOverCanvas: {fileID: 1361010051}
+  _gameOverCanvas: {fileID: 1348030645}
   _gameManager: {fileID: 686136126}
+  _winCanvas: {fileID: 1361010051}
 --- !u!1001 &1375452281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24598,7 +24608,7 @@ GameObject:
   - component: {fileID: 1382290067}
   - component: {fileID: 1382290069}
   - component: {fileID: 1382290068}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42941,6 +42951,8 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 1376603339}
   - {fileID: 686136127}
+  - {fileID: 1361010048}
+  - {fileID: 1348030646}
   - {fileID: 426952778}
   - {fileID: 1580894601}
   - {fileID: 1145650984}

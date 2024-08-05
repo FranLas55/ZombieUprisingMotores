@@ -6,10 +6,17 @@ public class MousseManager : MonoBehaviour
 {
     [SerializeField] private Canvas _gameOverCanvas;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Canvas _winCanvas;
+   
 
     private void Update()
     {
         if (_gameManager.gameOverCanvas.enabled)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (_gameManager.winCanvas.enabled)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -19,5 +26,9 @@ public class MousseManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+
+
+
     }
 }

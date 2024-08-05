@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f339cce31047bd644a40b9fefb9e9cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key: Shootgun
+  _key: Shotgun
   _weapons: 01000000
   _isChest: 0
 --- !u!1 &2283690529136985361
