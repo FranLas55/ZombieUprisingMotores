@@ -37,13 +37,12 @@ public class Machinegun : Weapon
                                                 Random.Range(-_bulletVariation.y, _bulletVariation.y),
                                                 Random.Range(-_bulletVariation.z, _bulletVariation.z));
 
-            Vector3 shootDirection = _shootPoint.forward + variation;
+            Vector3 shootDirection = (Camera.main.transform.forward + variation).normalized;
 
-            Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-
-            newBullet.transform.forward = shootDirection;
-
-            newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
+            //ProyectileBullet newProyectileBullet = Instantiate(proyectileBulletPrefab, _shootPoint.position, Quaternion.identity);
+            //newProyectileBullet.transform.forward = shootDirection;
+            //newProyectileBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
+            ShotRay(Camera.main.transform.position,shootDirection);
 
             bulletsFire++;
             _actualBullets--;

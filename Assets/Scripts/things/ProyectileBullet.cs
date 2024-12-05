@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //Tobias Rodriguez
 
-public class Bullet : MonoBehaviour
+public class ProyectileBullet : MonoBehaviour
 {
     [SerializeField] float scale;
     [SerializeField] LayerMask _bulletMask;
@@ -47,12 +44,12 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        //Que le haga daño a IDamageable MENOS al tipo que la disparó, si un zombie dispara, no hace daño a zombie
+        //Que le haga daÃ±o a IDamageable MENOS al tipo que la disparÃ³, si un zombie dispara, no hace daÃ±o a zombie
         _target = HitObject();
 
         if (_target != null)
         {
-            //hace daño a IDamageable
+            //hace daÃ±o a IDamageable
             if(_target.TryGetComponent(out IDamageable hitObj))
             {
                 hitObj.TakeDamage(_damage);

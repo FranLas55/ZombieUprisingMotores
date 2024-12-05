@@ -8896,7 +8896,7 @@ Transform:
   m_GameObject: {fileID: 609260198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9403,7 +9403,7 @@ MonoBehaviour:
   - {fileID: 1030244960}
   _spawnDelay: 2
   _roundDelay: 3
-  _canStartSpawning: 1
+  _canStartSpawning: 0
   _zombiesToSpawn: 50
   _playerCamera: {fileID: 963194229}
   _pointsText: {fileID: 2082785135}
@@ -15176,7 +15176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c1bb8b88fffa5e4fb28af3680295104, type: 3}
   m_Name: 
@@ -24118,7 +24118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1348030643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24435,7 +24435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1361010048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25023,20 +25023,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a99968ec8fad9845ad95d9272e566f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
+  _bulletTrail: {fileID: 7937924237873213608, guid: ef5939e7492d12e4a94b2b6198b7dfc0, type: 3}
   _shootPoint: {fileID: 197279458}
   _player: {fileID: 1376603340}
   _animator: {fileID: 487334984}
   _onRechargeName: OnRecharge
   _onShootName: OnShoot
   _damage: 5
-  _cadence: 0.75
-  _bulletSpeed: 10
-  _bulletLifeTime: 2
   _thisWeapon: 0
   _maxAmmo: 100
   _maxBullets: 15
-  _hasVariation: 1
   _bulletVariation: {x: 0.06, y: 0.06, z: 0.06}
 --- !u!1 &1461840555
 GameObject:
@@ -25455,21 +25451,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385c3eef08b5cb14bb0d3eb1b6d0ead4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
+  _bulletTrail: {fileID: 7937924237873213608, guid: ef5939e7492d12e4a94b2b6198b7dfc0, type: 3}
   _shootPoint: {fileID: 422960978}
   _player: {fileID: 1376603340}
   _animator: {fileID: 1399069307}
   _onRechargeName: OnRecharge
   _onShootName: OnShoot
   _damage: 3
-  _cadence: 0.1
-  _bulletSpeed: 10
-  _bulletLifeTime: 3
   _thisWeapon: 2
   _maxAmmo: 60
   _maxBullets: 21
-  _hasVariation: 1
-  _bulletVariation: {x: 0.06, y: 0.06, z: 0.06}
+  _bulletVariation: {x: 0.01, y: 0.01, z: 0.01}
   _fireRate: 0.1
   _maxBulletsPerBurst: 3
 --- !u!4 &1543508887 stripped
@@ -40631,20 +40623,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f9a22384faa9848bbbf68f5cc3ad7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
+  _bulletTrail: {fileID: 7937924237873213608, guid: ef5939e7492d12e4a94b2b6198b7dfc0, type: 3}
   _shootPoint: {fileID: 2147426793}
   _player: {fileID: 1376603340}
   _animator: {fileID: 557631146}
   _onRechargeName: OnRecharge
   _onShootName: OnShoot
   _damage: 4
-  _cadence: 1.5
-  _bulletSpeed: 10
-  _bulletLifeTime: 0.75
   _thisWeapon: 1
   _maxAmmo: 30
   _maxBullets: 10
-  _hasVariation: 1
   _bulletVariation: {x: 0.1, y: 0.1, z: 0.1}
   _pelletsPerShot: 5
 --- !u!1 &2126734635

@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using weapon;
 
 //Tobias Rodriguez
 
 public abstract class Weapon : MonoBehaviour
 {
+    [FormerlySerializedAs("_bulletPrefab")]
     [Header("References")]
-    [SerializeField] protected Bullet _bulletPrefab;
+    //[SerializeField] protected ProyectileBullet proyectileBulletPrefab;
+    [SerializeField] protected TrailRenderer _bulletTrail;
     [SerializeField] protected Transform _shootPoint;
     [SerializeField] protected Player _player;
 
@@ -21,20 +23,23 @@ public abstract class Weapon : MonoBehaviour
 
     [Header("Values")]
     [SerializeField] protected int _damage;
-    [SerializeField] protected float _cadence;
-    [SerializeField] protected float _bulletSpeed;
-    [SerializeField] protected float _bulletLifeTime;
+    //[SerializeField] protected float _cadence;
+    //[SerializeField] protected float _bulletSpeed;
+    //[SerializeField] protected float _bulletLifeTime;
     [SerializeField] private WeaponEnum _thisWeapon;
 
 
     [Header("bullets")]
     [SerializeField] private int _maxAmmo;
     [SerializeField] private int _maxBullets;
-    [SerializeField] protected bool _hasVariation;
+    //[SerializeField] protected bool _hasVariation;
     [SerializeField] protected Vector3 _bulletVariation = new Vector3(.06f, .06f, .06f);
 
     protected int _actualBullets;
     private int _actualAmmo;
+
+    private Ray _shotRay;
+    private RaycastHit _shotHit;
 
     private void Start()
     {
@@ -107,6 +112,54 @@ public abstract class Weapon : MonoBehaviour
             _player.ChangeWeapon(WeaponEnum.Gun);
         }
     }
+    
+    private IEnumerator SpawnTrail(TrailRenderer localTrail, RaycastHit hit)
+    {
+        float time = 0;
+        Vector3 startPosition = localTrail.transform.position;
+
+        while (time < 1)
+        {
+            localTrail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+            time += Time.deltaTime / localTrail.time;
+
+            yield return null;
+        }
+
+        localTrail.transform.position = hit.point;
+        //hacer que se vea donde impactó la bala (a evaluar)
+
+        Destroy(localTrail.gameObject, localTrail.time);
+    }
+
+    protected void ShotRay(Vector3 from, Vector3 dir)
+    {
+        _shotRay = new Ray(from, dir); //Tarea(xd): agregar variacion a la direccion de disparo, para dar más realismo
+
+        if (Physics.Raycast(_shotRay, out _shotHit , Mathf.Infinity)) // no tiene una LayerMask porque quiero que pueda impactar con todo, pero solo hacer daño al zombie
+        {
+            //Trazar el camino de la bala
+
+            Debug.Log($"Golpee algo, especificamente con {_shotHit.collider.gameObject.name}");
+
+            TrailRenderer trail = Instantiate(_bulletTrail, _shootPoint.position, Quaternion.identity);
+
+            StartCoroutine(SpawnTrail(trail, _shotHit));
+
+            if (_shotHit.collider.TryGetComponent<Zombie>(out var zombie))
+            {
+                zombie.TakeDamage(_damage);
+                //zombie.Knockback(_shootRay.direction, 2.5f);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        var cam = Camera.main;
+        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * 1000);
+    }
 }
 
 namespace weapon
@@ -115,7 +168,7 @@ namespace weapon
     {
         Gun,
         ShotGun,
-        MachineGun
+        Famas
     }
 
 }

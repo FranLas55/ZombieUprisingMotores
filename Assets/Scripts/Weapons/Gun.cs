@@ -11,13 +11,11 @@ public class Gun : Weapon
     {
         if (_actualBullets > 0)
         {
-            Vector3 shootDirection  = _shootPoint.forward;
+            Vector3 shootDirection  = Camera.main.transform.forward;
 
-            Bullet newBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-
-            newBullet.transform.forward = shootDirection;
-
-            newBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
+            //newProyectileBullet.transform.forward = shootDirection;
+            //newProyectileBullet.InitializeBullet(_damage, _bulletLifeTime, _bulletSpeed);
+            ShotRay(Camera.main.transform.position, shootDirection);
 
             _actualBullets--;
             _animator.SetTrigger(_onShootName);

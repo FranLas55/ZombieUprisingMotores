@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Carlos Coronel
 
 public class RangeZombie : Zombie
 {
-    [SerializeField] Bullet _bulletPrefab;
+    [FormerlySerializedAs("_bulletPrefab")] [SerializeField] ProyectileBullet proyectileBulletPrefab;
     [SerializeField] float _runSpeed;
     [SerializeField] float _runRange;
     [SerializeField] float _runTime;
@@ -35,9 +36,9 @@ public class RangeZombie : Zombie
             //Le dispara
             if (_actualCooldown <= 0)
             {
-                Bullet newBullet = Instantiate(_bulletPrefab, _attackPoint.position, Quaternion.identity);
-                newBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
-                newBullet.transform.forward = _playerDir;
+                ProyectileBullet newProyectileBullet = Instantiate(proyectileBulletPrefab, _attackPoint.position, Quaternion.identity);
+                newProyectileBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
+                newProyectileBullet.transform.forward = _playerDir;
 
                 _actualCooldown = _attackCooldown;
             }
