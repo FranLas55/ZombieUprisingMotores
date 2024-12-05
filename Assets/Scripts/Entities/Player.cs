@@ -98,7 +98,7 @@ public class Player : Entity
         BuyObj();
 
         //pruebas
-        if (Input.GetKeyDown(KeyCode.M)) ChangeWeapon(WeaponEnum.MachineGun);
+        if (Input.GetKeyDown(KeyCode.M)) ChangeWeapon(WeaponEnum.Famas);
         if (Input.GetKeyDown(KeyCode.N)) ChangeWeapon(WeaponEnum.ShotGun);
         if (Input.GetKeyDown(KeyCode.G)) ChangeWeapon(WeaponEnum.Gun);
         if (Input.GetKeyDown(KeyCode.C)) TakeDamage(1);
