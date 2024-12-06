@@ -146,10 +146,9 @@ public abstract class Weapon : MonoBehaviour
 
             StartCoroutine(SpawnTrail(trail, _shotHit));
 
-            if (_shotHit.collider.TryGetComponent<Zombie>(out var zombie))
+            if (_shotHit.collider.TryGetComponent<IDamageable>(out var IDamage))
             {
-                zombie.TakeDamage(_damage);
-                //zombie.Knockback(_shootRay.direction, 2.5f);
+                IDamage.TakeDamage(_damage);
             }
         }
     }

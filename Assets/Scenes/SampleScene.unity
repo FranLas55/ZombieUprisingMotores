@@ -43548,6 +43548,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 7663934183053574614, guid: e1428778c4f5060489f91acd8b320c95, type: 3}
+      propertyPath: _weapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663934183053574614, guid: e1428778c4f5060489f91acd8b320c95, type: 3}
+      propertyPath: _weapons.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9042923806534499263, guid: e1428778c4f5060489f91acd8b320c95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.145714
