@@ -36,6 +36,7 @@ public class RangeZombie : Zombie
             //Le dispara
             if (_actualCooldown <= 0)
             {
+                _animator.SetTrigger(_onAttackName);
                 ProyectileBullet newProyectileBullet = Instantiate(proyectileBulletPrefab, _attackPoint.position, Quaternion.identity);
                 newProyectileBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
                 newProyectileBullet.transform.forward = _playerDir;
@@ -70,7 +71,6 @@ public class RangeZombie : Zombie
         while (t < _runTime)
         {
             transform.forward = transform.position - _playerDir;
-
             t += Time.deltaTime;
             yield return null;
         }

@@ -31,6 +31,7 @@ public class Zombie : Entity
     [Header("Animations")]
     [SerializeField] protected Animator _animator;
     [SerializeField] protected string _onDeathName = "onDeath";
+    [SerializeField] protected string _isDeathName = "isDeath";
     [SerializeField] protected string _isWalkingName = "isWalking";
     [SerializeField] protected string _onAttackName = "onAttack";
 
@@ -115,10 +116,15 @@ public class Zombie : Entity
 
     public override void OnDeath()
     {
+
+        //StartCoroutine(DeathZombies());
         _animator.SetTrigger(_onDeathName);
+        //_animator.SetBool(_isDeathName, true);
         GameManager.Instance.AddPoints(_pointsOnDeath);
+        Debug.Log("Muere, Animacion");
 
         Destroy(gameObject);
+
     }
 
     public void InitializeZombie(Transform target)
@@ -172,4 +178,22 @@ public class Zombie : Entity
         _source.clip = _explodeClip;
         _source.Play();
     }
+
+    public void AnimacionMuerte()
+    {
+        _animator.SetTrigger(_onDeathName);
+    }
+
+   /*IEnumerator DeathZombies()
+    {
+        _animator.SetTrigger(_onDeathName);
+        //_animator.SetBool(_isDeathName, true);
+        GameManager.Instance.AddPoints(_pointsOnDeath);
+        Debug.Log("Muere, Animacion");
+
+        yield return (0.1f);
+
+        Destroy(gameObject);
+
+    }*/
 }

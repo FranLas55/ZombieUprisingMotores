@@ -362,6 +362,8 @@ MonoBehaviour:
   _wallMask:
     serializedVersion: 2
     m_Bits: 1280
+  _source: {fileID: 0}
+  _hurtClip: {fileID: 0}
   _playerTransform: {fileID: 0}
   _pointsOnDeath: 60
   _attackRange: 1.5
@@ -374,8 +376,13 @@ MonoBehaviour:
   _blood: {fileID: 3173276737026625158}
   _animator: {fileID: 1913823875691513374}
   _onDeathName: onDeath
+  _isDeathName: isDeath
   _isWalkingName: isWalking
   _onAttackName: onAttack
+  _growlClip: {fileID: 0}
+  _attackClip: {fileID: 0}
+  _dieClip: {fileID: 0}
+  _explodeClip: {fileID: 0}
   _explosionPrefab: {fileID: 1683547484801059950}
   _runSpeed: 6
   _explosionRadius: 20
@@ -2821,7 +2828,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8770596508513098298, guid: 8607b10de82be414d8d83a0b729427d1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
