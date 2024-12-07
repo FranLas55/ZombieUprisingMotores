@@ -15,6 +15,9 @@ public abstract class Entity : MonoBehaviour, IDamageable
     [SerializeField] private float _wallRayRange = .6f;
     [SerializeField] private LayerMask _wallMask;
 
+    [SerializeField] protected AudioSource _source;
+    [SerializeField] private AudioClip _hurtClip;
+
     private Ray _wallRay;
     protected int _actualHp;
     protected Rigidbody _rb;

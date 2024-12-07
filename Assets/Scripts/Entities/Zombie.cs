@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static Unity.VisualScripting.Member;
 
 //Carlos Coronel
 
@@ -17,12 +18,27 @@ public class Zombie : Entity
 
     protected float distanceToPlayer;
 
-    [Header("Values")] [SerializeField] private int _pointsOnDeath = 7;
+    [Header("Values")][SerializeField] private int _pointsOnDeath = 7;
     [SerializeField] protected float _attackRange = 1.5f;
     [SerializeField] protected float _attackCooldown = 2f;
     [SerializeField] protected int _attackDamage = 1;
     [SerializeField] private LayerMask _attackMask;
     [SerializeField] protected Transform _attackPoint;
+
+    [Header("Particulas")]
+    [SerializeField] protected ParticleSystem _blood;
+
+    [Header("Animations")]
+    [SerializeField] protected Animator _animator;
+    [SerializeField] protected string _onDeathName = "onDeath";
+    [SerializeField] protected string _isWalkingName = "isWalking";
+    [SerializeField] protected string _onAttackName = "onAttack";
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip _growlClip;
+    [SerializeField] private AudioClip _attackClip;
+    [SerializeField] private AudioClip _dieClip;
+    [SerializeField] private AudioClip _explodeClip;
 
     protected float _actualCooldown;
     private Ray _attackRay = new();
@@ -31,6 +47,7 @@ public class Zombie : Entity
     protected override void Start()
     {
         base.Start();
+        _source = GetComponent<AudioSource>();
         //_playerTransform = Player.Instance.transform;
         _actualCooldown = _attackCooldown;
     }
@@ -66,6 +83,8 @@ public class Zombie : Entity
                     if (_attackHit.collider.TryGetComponent(out Player player))
                     {
                         player.TakeDamage(_attackDamage);
+                        _animator.SetBool(_isWalkingName, false);
+                        _animator.SetTrigger(_onAttackName);
                     }
                 }
 
@@ -82,6 +101,7 @@ public class Zombie : Entity
         else
         {
             _canMove = true;
+            _animator.SetBool(_isWalkingName, true);
             transform.LookAt(_playerTransform.position);
         }
     }
@@ -95,6 +115,7 @@ public class Zombie : Entity
 
     public override void OnDeath()
     {
+        _animator.SetTrigger(_onDeathName);
         GameManager.Instance.AddPoints(_pointsOnDeath);
 
         Destroy(gameObject);
@@ -108,5 +129,47 @@ public class Zombie : Entity
     private void OnDestroy()
     {
         GameManager.Instance.RemoveZombie(this);
+    }
+
+    public void BloodAnimation()
+    {
+        _blood.gameObject.SetActive(true);
+
+    }
+    public void PlayGrowlClip()
+    {
+        if (_source.isPlaying)
+        {
+            _source.Stop();
+        }
+        _source.clip = _growlClip;
+        _source.Play();
+    }
+    public void PlayAttackClip()
+    {
+        if (_source.isPlaying)
+        {
+            _source.Stop();
+        }
+        _source.clip = _attackClip;
+        _source.Play();
+    }
+    public void PlayDeathClip()
+    {
+        if (_source.isPlaying)
+        {
+            _source.Stop();
+        }
+        _source.clip = _dieClip;
+        _source.Play();
+    }
+    public void PlayExplodeClip()
+    {
+        if (_source.isPlaying)
+        {
+            _source.Stop();
+        }
+        _source.clip = _explodeClip;
+        _source.Play();
     }
 }
