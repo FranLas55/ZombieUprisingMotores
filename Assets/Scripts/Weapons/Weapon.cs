@@ -19,20 +19,19 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected Animator _animator;
     [SerializeField] private string _onRechargeName = "OnRecharge";
     [SerializeField] protected string _onShootName = "OnShoot";
+    [SerializeField] private string _xAxisName = "xAxis";
+    [SerializeField] private string _zAxisName = "zAxis";
+    [SerializeField, Range(1, 2)] private float _runSpeed;
 
 
     [Header("Values")]
     [SerializeField] protected int _damage;
-    //[SerializeField] protected float _cadence;
-    //[SerializeField] protected float _bulletSpeed;
-    //[SerializeField] protected float _bulletLifeTime;
     [SerializeField] private WeaponEnum _thisWeapon;
 
 
     [Header("bullets")]
     [SerializeField] private int _maxAmmo;
     [SerializeField] private int _maxBullets;
-    //[SerializeField] protected bool _hasVariation;
     [SerializeField] protected Vector3 _bulletVariation = new Vector3(.06f, .06f, .06f);
 
     protected int _actualBullets;
@@ -50,6 +49,12 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void Update()
     {
         NoBullets();
+    }
+
+    public void Move(float xAxis, float zAxis)
+    {
+        _animator.SetFloat(_xAxisName, xAxis);
+        _animator.SetFloat(_zAxisName, zAxis);
     }
 
     public abstract void Shoot();
