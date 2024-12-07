@@ -36,7 +36,6 @@ public class Player : Entity
     [SerializeField] private float _jumpRayRange = .5f;
     [SerializeField] private LayerMask _jumpMask;
     
-    
     private Vector3 _dir = new(), _transformOffset = new();
 
     private Ray _jumpRay;
@@ -82,6 +81,7 @@ public class Player : Entity
     private void Update()
     {
         _dir = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical"));
+        _actualWeapon.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (Input.GetKey(_inputs.runKey)) _movement.ChangeSpeed(_runSpeed);
         else _movement.RestartSpeed();
