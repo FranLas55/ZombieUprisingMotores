@@ -16,7 +16,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask _wallMask;
 
     [SerializeField] protected AudioSource _source;
-    [SerializeField] private AudioClip _hurtClip;
+    //[SerializeField] private AudioClip _hurtClip;
 
     private Ray _wallRay;
     protected int _actualHp;

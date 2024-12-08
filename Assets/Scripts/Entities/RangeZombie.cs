@@ -8,7 +8,9 @@ using UnityEngine.Serialization;
 
 public class RangeZombie : Zombie
 {
-    [FormerlySerializedAs("_bulletPrefab")] [SerializeField] ProyectileBullet proyectileBulletPrefab;
+    [FormerlySerializedAs("_bulletPrefab")] [SerializeField]
+    ProyectileBullet proyectileBulletPrefab;
+
     [SerializeField] float _runSpeed;
     [SerializeField] float _runRange;
     [SerializeField] float _runTime;
@@ -28,7 +30,10 @@ public class RangeZombie : Zombie
                 print("Llamo a corrutina");
                 StartCoroutine(RunAwayFromPlayer());
             }
+
             _canMove = true;
+            _animator.SetBool(_isWalkingName, true);
+            transform.forward = -_playerDir;
         }
         else if (distanceToPlayer <= _attackRange)
         {
@@ -36,10 +41,8 @@ public class RangeZombie : Zombie
             //Le dispara
             if (_actualCooldown <= 0)
             {
+                _animator.SetBool(_isWalkingName, false);
                 _animator.SetTrigger(_onAttackName);
-                ProyectileBullet newProyectileBullet = Instantiate(proyectileBulletPrefab, _attackPoint.position, Quaternion.identity);
-                newProyectileBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
-                newProyectileBullet.transform.forward = _playerDir;
 
                 _actualCooldown = _attackCooldown;
             }
@@ -47,18 +50,27 @@ public class RangeZombie : Zombie
             {
                 _actualCooldown -= Time.deltaTime;
             }
+            transform.forward = _playerDir;
 
             _canMove = false;
         }
         else
         {
             _canMove = true;
+            _animator.SetBool(_isWalkingName, true);
 
             StopAllCoroutines();
             _movement.RestartSpeed();
+            transform.forward = _playerDir;
         }
+    }
 
-        transform.LookAt(_playerTransform.position);
+    public override void Attack()
+    {
+        ProyectileBullet newProyectileBullet =
+            Instantiate(proyectileBulletPrefab, _attackPoint.position, Quaternion.identity);
+        newProyectileBullet.InitializeBullet(_attackDamage, 4f, _bulletSpeed);
+        newProyectileBullet.transform.forward = _playerDir;
     }
 
     IEnumerator RunAwayFromPlayer()
@@ -86,4 +98,3 @@ public class RangeZombie : Zombie
         Gizmos.DrawRay(transform.position + transform.up, _playerDir * _runRange);
     }
 }
-

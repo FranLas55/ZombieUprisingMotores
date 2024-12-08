@@ -106,7 +106,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected void UpdateUI(bool infinite)
     {
-        GameManager.Instance.UpdateBullets(_actualBullets, _maxBullets, _actualAmmo, infinite);
+        GameManager.Instance?.UpdateBullets(_actualBullets, _maxBullets, _actualAmmo, infinite);
     }
 
     private void NoBullets()

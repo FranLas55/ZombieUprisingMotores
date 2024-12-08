@@ -39,7 +39,6 @@ public class Zombie : Entity
     [SerializeField] private AudioClip _growlClip;
     [SerializeField] private AudioClip _attackClip;
     [SerializeField] private AudioClip _dieClip;
-    [SerializeField] private AudioClip _explodeClip;
 
     protected float _actualCooldown;
     private Ray _attackRay = new();
@@ -51,6 +50,7 @@ public class Zombie : Entity
         _source = GetComponent<AudioSource>();
         //_playerTransform = Player.Instance.transform;
         _actualCooldown = _attackCooldown;
+        _animator.SetBool(_isWalkingName, true);
     }
 
     protected virtual void Update()
@@ -77,17 +77,8 @@ public class Zombie : Entity
         {
             if (_actualCooldown <= 0)
             {
-                _attackRay = new Ray(_attackPoint.position, _playerDir);
-
-                if (Physics.Raycast(_attackRay, out _attackHit, _attackRange, _attackMask))
-                {
-                    if (_attackHit.collider.TryGetComponent(out Player player))
-                    {
-                        player.TakeDamage(_attackDamage);
-                        _animator.SetBool(_isWalkingName, false);
-                        _animator.SetTrigger(_onAttackName);
-                    }
-                }
+                _animator.SetBool(_isWalkingName, false);
+                _animator.SetTrigger(_onAttackName);
 
                 print("Ataco");
                 _actualCooldown = _attackCooldown;
@@ -107,6 +98,19 @@ public class Zombie : Entity
         }
     }
 
+    public virtual void Attack()
+    {
+        _attackRay = new Ray(_attackPoint.position, _playerDir);
+
+        if (Physics.Raycast(_attackRay, out _attackHit, _attackRange, _attackMask))
+        {
+            if (_attackHit.collider.TryGetComponent(out Player player))
+            {
+                player.TakeDamage(_attackDamage);
+            }
+        }
+    }
+
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -116,15 +120,12 @@ public class Zombie : Entity
 
     public override void OnDeath()
     {
-
-        //StartCoroutine(DeathZombies());
+        GetComponent<Collider>().enabled = false;
+        _rb.useGravity = false;
+        _movement.Stop();
         _animator.SetTrigger(_onDeathName);
-        //_animator.SetBool(_isDeathName, true);
         GameManager.Instance.AddPoints(_pointsOnDeath);
         Debug.Log("Muere, Animacion");
-
-        Destroy(gameObject);
-
     }
 
     public void InitializeZombie(Transform target)
@@ -137,11 +138,17 @@ public class Zombie : Entity
         GameManager.Instance.RemoveZombie(this);
     }
 
-    public void BloodAnimation()
+    public override void TakeDamage(int dmg)
     {
-        _blood.gameObject.SetActive(true);
-
+        base.TakeDamage(dmg);
+        _blood.Play();
     }
+
+    public virtual void Kill()
+    {
+        Destroy(gameObject);
+    }
+
     public void PlayGrowlClip()
     {
         if (_source.isPlaying)
@@ -167,15 +174,6 @@ public class Zombie : Entity
             _source.Stop();
         }
         _source.clip = _dieClip;
-        _source.Play();
-    }
-    public void PlayExplodeClip()
-    {
-        if (_source.isPlaying)
-        {
-            _source.Stop();
-        }
-        _source.clip = _explodeClip;
         _source.Play();
     }
 

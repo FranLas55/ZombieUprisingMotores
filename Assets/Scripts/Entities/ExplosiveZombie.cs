@@ -24,21 +24,15 @@ public class ExplosiveZombie : Zombie
 
         if (_canExplode && distanceToPlayer <= _explosionRadius * .25f)
         {
-            Explode();
+            Kill();
         }
     }
 
-    public override void OnDeath()
-    {
-        base.OnDeath();
-        Explode();
-    }
-
-    private void Explode()
+    public override void Kill()
     {
         Explosion myExplosion = Instantiate(_explosionPrefab, transform.position + transform.up, Quaternion.identity);
         myExplosion.SetRadius(_explosionRadius);
-        Destroy(gameObject);
+        base.Kill();
     }
 
     protected override void OnDrawGizmos()

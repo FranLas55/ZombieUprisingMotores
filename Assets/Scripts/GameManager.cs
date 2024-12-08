@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 //Tobias
 
@@ -26,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bulletsText;
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private Image _lifeBar;
+    [SerializeField] private string _winSceneName;
+    [SerializeField] private string _lostSceneName;
     public Canvas gameOverCanvas;
     public Canvas winCanvas;
 
@@ -66,8 +71,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _buyKeys.Length; i++)
         {
             _buyDictionary.Add(_buyKeys[i], _buyValues[i]);
-            
-            //print($"key = {_buyKeys[i]} value = {buyDictionary[_buyKeys[i]]}");
         }
 
         if (_canStartSpawning)
@@ -222,14 +225,16 @@ public class GameManager : MonoBehaviour
         {
             if (gameOverCanvas != null)
             {
-                gameOverCanvas.enabled = true;
+                //gameOverCanvas.enabled = true;
+                SceneManager.LoadScene(_lostSceneName);
             }
         }
         else
         {
             if (winCanvas != null)
             {
-                winCanvas.enabled = true;
+                //winCanvas.enabled = true;
+                SceneManager.LoadScene(_winSceneName);
             }
         }
 
