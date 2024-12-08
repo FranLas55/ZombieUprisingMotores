@@ -36,7 +36,7 @@ public class Explosion : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var explotable = Physics.OverlapSphere(transform.position, currentScale, _dmgMask);
+        var explotable = Physics.OverlapSphere(transform.position, maxScale, _dmgMask);
 
         if (explotable.Length <= 0) return;
 

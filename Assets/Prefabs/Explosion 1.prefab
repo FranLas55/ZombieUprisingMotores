@@ -4955,7 +4955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  duration: 1
+  duration: 1.25
   _dmgMask:
     serializedVersion: 2
     m_Bits: 648
