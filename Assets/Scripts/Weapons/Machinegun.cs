@@ -33,6 +33,7 @@ public class Machinegun : Weapon
 
         while (bulletsFire < _maxBulletsPerBurst && _actualBullets > 0)
         {
+            ShootSound();
             Vector3 variation = new Vector3(Random.Range(-_bulletVariation.x, _bulletVariation.x),
                                                 Random.Range(-_bulletVariation.y, _bulletVariation.y),
                                                 Random.Range(-_bulletVariation.z, _bulletVariation.z));

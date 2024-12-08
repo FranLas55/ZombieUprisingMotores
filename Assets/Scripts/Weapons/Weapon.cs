@@ -34,6 +34,12 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private int _maxBullets;
     [SerializeField] protected Vector3 _bulletVariation = new Vector3(.06f, .06f, .06f);
 
+    [Header("Audio")] 
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _reloadClip;
+    [SerializeField] private AudioClip _shootClip;
+
+
     protected int _actualBullets;
     private int _actualAmmo;
 
@@ -78,6 +84,7 @@ public abstract class Weapon : MonoBehaviour
         }
 
         UpdateUI(_thisWeapon == WeaponEnum.Gun);
+        ReloadSound();
         _animator.SetTrigger(_onRechargeName);
     }
 
@@ -94,6 +101,7 @@ public abstract class Weapon : MonoBehaviour
     private void OnEnable()
     {
         Initialize();
+        ReloadSound();
     }
 
     public void Initialize()
@@ -157,6 +165,17 @@ public abstract class Weapon : MonoBehaviour
             }
         }
     }
+
+    public void ShootSound()
+    {
+        _source?.PlayOneShot(_shootClip);
+    }
+    
+    public void ReloadSound()
+    {
+        _source?.PlayOneShot(_reloadClip);
+    }
+
 
     private void OnDrawGizmos()
     {

@@ -11,6 +11,7 @@ public class Gun : Weapon
     {
         if (_actualBullets > 0)
         {
+            ShootSound();
             Vector3 shootDirection  = Camera.main.transform.forward;
 
             //newProyectileBullet.transform.forward = shootDirection;

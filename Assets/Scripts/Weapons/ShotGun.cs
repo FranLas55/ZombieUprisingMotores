@@ -13,6 +13,7 @@ public class ShotGun : Weapon
         if (_actualBullets > 0)
         {
             _animator.SetTrigger(_onShootName);
+            ShootSound();
 
             for (int i = 0; i < _pelletsPerShot; i++)
             {
