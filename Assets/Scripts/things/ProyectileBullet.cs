@@ -61,15 +61,8 @@ public class ProyectileBullet : MonoBehaviour
     private Collider HitObject()
     {
         Collider[] objects = Physics.OverlapSphere(transform.position, scale, _bulletMask);
-        
-        if (objects.Length <= 0)
-        {
-            return null;
-        }
-        else
-        {
-            return objects[0];
-        }
+
+        return objects.Length <= 0 ? null : objects[0];
     }
 }
 
