@@ -24746,6 +24746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieNormal
       objectReference: {fileID: 0}
+    - target: {fileID: 5696483499576695097, guid: 16fc7b65dcf4cd841b0466744388e8ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6033534448401780000, guid: 16fc7b65dcf4cd841b0466744388e8ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.048493207
@@ -41958,6 +41962,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 352782282}
     m_Modifications:
+    - target: {fileID: 2676536490799504557, guid: b1a42db9eb411b041aa15493155d5e1d, type: 3}
+      propertyPath: _explosionRadius
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4993971505668288528, guid: b1a42db9eb411b041aa15493155d5e1d, type: 3}
       propertyPath: m_Name
       value: ExplosiveBarrel

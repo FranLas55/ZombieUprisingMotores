@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
     private void Enable()
     {
         this.gameObject.SetActive(true);
+        _life = 3;
     }
 
     public void TakeDamage(int dmg)
@@ -35,5 +37,11 @@ public class ExplosiveBarrel : MonoBehaviour, IDamageable
         {
             OnDeath();
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
 }

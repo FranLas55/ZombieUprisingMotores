@@ -4956,6 +4956,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   duration: 1
+  _dmgMask:
+    serializedVersion: 2
+    m_Bits: 648
 --- !u!82 &3934405954576474144
 AudioSource:
   m_ObjectHideFlags: 0

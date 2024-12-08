@@ -12,35 +12,41 @@ public class Explosion : MonoBehaviour
     [Header("Values")]
     [SerializeField] private int damage = 10;
     [SerializeField] private float duration = 1f;
+    [SerializeField] private LayerMask _dmgMask;
 
     private float currentTime = 0f;
-    private Collider _collider;
 
-    private void Start()
-    {
-        _collider = GetComponentInChildren<Collider>();
-    }
+    private float currentScale;
+
+    private List<IDamageable> _damageables = new();
 
     private void Update()
     {
         if (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            float scale = Mathf.Lerp(0, maxScale, currentTime / duration);
-            _collider.transform.localScale = new Vector3(scale, scale, scale);
+            currentScale = Mathf.Lerp(0, maxScale, currentTime / duration);
         }
         
-        if(_collider.transform.localScale.x >= maxScale)
+        if(currentScale >= maxScale)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
-        if (other.TryGetComponent(out IDamageable entity))
+        var explotable = Physics.OverlapSphere(transform.position, currentScale, _dmgMask);
+
+        if (explotable.Length <= 0) return;
+
+        foreach (var entity in explotable)
         {
-            entity.TakeDamage(damage);
+            if (entity.TryGetComponent(out IDamageable dmg) && !_damageables.Contains(dmg))
+            {
+                dmg.TakeDamage(damage);
+                _damageables.Add(dmg);
+            }
         }
     }
 
