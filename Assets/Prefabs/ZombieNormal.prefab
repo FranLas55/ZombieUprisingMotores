@@ -1341,6 +1341,7 @@ GameObject:
   - component: {fileID: 1573788515946180050}
   - component: {fileID: 4826062753146757176}
   - component: {fileID: 7096775578508001717}
+  - component: {fileID: -6749871004093393021}
   m_Layer: 7
   m_Name: ZombieNormal
   m_TagString: Untagged
@@ -1434,6 +1435,7 @@ MonoBehaviour:
   _wallMask:
     serializedVersion: 2
     m_Bits: 1280
+  _source: {fileID: -6749871004093393021}
   _playerTransform: {fileID: 0}
   _pointsOnDeath: 55
   _attackRange: 1.5
@@ -1446,8 +1448,12 @@ MonoBehaviour:
   _blood: {fileID: 6302826830719943888}
   _animator: {fileID: 7096775578508001717}
   _onDeathName: onDeath
+  _isDeathName: isDeath
   _isWalkingName: isWalking
   _onAttackName: onAttack
+  _growlClip: {fileID: 8300000, guid: 5534b1533af840d40bc7eaa2ef2a2c26, type: 3}
+  _attackClip: {fileID: 8300000, guid: bb2dd0ddde6262147bbecca9a2592398, type: 3}
+  _dieClip: {fileID: 8300000, guid: 1e7e11032a058984e91f2d1b5708bf6d, type: 3}
 --- !u!95 &7096775578508001717
 Animator:
   serializedVersion: 5
@@ -1469,6 +1475,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &-6749871004093393021
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696483499576695097}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5802096915103708384, guid: 004454630bf3e514987d5631294c2b36, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.608
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5723737297592035677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,41 +2900,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6033534448401780000}
     m_Modifications:
-    - target: {fileID: 333201982981951344, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: UVModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 333201982981951344, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: ShapeModule.m_Texture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 333201982981951344, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: UVModule.sprites.Array.data[0].sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662429510960235424, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 4662429510960235424, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662429510960235424, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662429510960235424, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0925b711cf78ddb4cb2d7d4c1ee06731, type: 2}
     - target: {fileID: 6151121980965805478, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
       propertyPath: m_Name
       value: Particle System
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151121980965805478, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6802473900578663723, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
       propertyPath: m_LocalPosition.x

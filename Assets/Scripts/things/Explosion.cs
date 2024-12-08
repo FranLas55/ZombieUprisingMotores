@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,12 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float duration = 1f;
 
     private float currentTime = 0f;
+    private Collider _collider;
+
+    private void Start()
+    {
+        _collider = GetComponentInChildren<Collider>();
+    }
 
     private void Update()
     {
@@ -20,10 +27,10 @@ public class Explosion : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             float scale = Mathf.Lerp(0, maxScale, currentTime / duration);
-            transform.localScale = new Vector3(scale, scale, scale);
+            _collider.transform.localScale = new Vector3(scale, scale, scale);
         }
         
-        if(transform.localScale.x >= maxScale)
+        if(_collider.transform.localScale.x >= maxScale)
         {
             Destroy(gameObject);
         }
