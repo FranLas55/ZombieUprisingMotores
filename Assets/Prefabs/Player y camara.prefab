@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 3852824457351959539}
   - component: {fileID: 8092835917545059344}
   - component: {fileID: 6847845263070450698}
+  - component: {fileID: 8739046794821829596}
   - component: {fileID: 7875059928456568409}
   m_Layer: 3
   m_Name: Mesh
@@ -209,6 +210,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8739046794821829596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448206601754899082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524fc5c38349c4a4fbbe97604b9a2cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gun: {fileID: 100006, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
+  _shotgun: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
+  _machineGun: {fileID: 100000, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
 --- !u!95 &7875059928456568409
 Animator:
   serializedVersion: 5
@@ -583,6 +599,7 @@ GameObject:
   - component: {fileID: 8195932610844750273}
   - component: {fileID: 1054112290838622390}
   - component: {fileID: 7753494808932000722}
+  - component: {fileID: 6787047834114227103}
   - component: {fileID: 2833851058636021171}
   m_Layer: 3
   m_Name: Mesh
@@ -657,6 +674,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6787047834114227103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705796233726571098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524fc5c38349c4a4fbbe97604b9a2cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gun: {fileID: 100006, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
+  _shotgun: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
+  _machineGun: {fileID: 100000, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
 --- !u!95 &2833851058636021171
 Animator:
   serializedVersion: 5
