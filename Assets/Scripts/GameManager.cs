@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Spawner")]
     [SerializeField] private Zombie[] _zombiePrefabs;
     [SerializeField] private Player _player;
-    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private List<Transform> _spawnPoints = new();
     [SerializeField] private float _spawnDelay;
     [SerializeField] private float _roundDelay;
     [SerializeField] private bool _canStartSpawning;
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         do
         {
-            point = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+            point = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
         } while (point.gameObject.activeSelf == false);
 
         return point;
@@ -294,5 +294,10 @@ public class GameManager : MonoBehaviour
         
         
         return int.MaxValue;
+    }
+
+    public void AddSpawnPoint(Transform sp)
+    {
+        if(!_spawnPoints.Contains(sp)) _spawnPoints.Add(sp);
     }
 }

@@ -60,7 +60,7 @@ public class Zombie : Entity
 
         AttackAndMove();
         
-        if(transform.position.y <= -10) TakeDamage(1000);
+        if(transform.position.y <= -10) Destroy(gameObject);
     }
 
     protected virtual void FixedUpdate()

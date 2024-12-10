@@ -190,18 +190,22 @@ public class Player : Entity
             if (colliders.Length > 0)
             {
                 print($"Colicioné con {colliders[0].name}");
-
-                if (colliders[0].TryGetComponent(out Interactuable objToBuy))
+                
+                foreach (var collider in colliders)
                 {
-                    if (BuyEvent(GameManager.Instance.GetKeyValue(objToBuy.ReturnKey())))
+                    if (collider.TryGetComponent(out Interactuable objToBuy))
                     {
-                        print("Comprando el obj");
-                        objToBuy.Buy(this);
-                    }
-                    else
-                    {
-                        //Algo en la UI que muestre que no compró
-                        Debug.Log("No pudo comprar");
+                        if (BuyEvent(GameManager.Instance.GetKeyValue(objToBuy.ReturnKey())))
+                        {
+                            print("Comprando el obj");
+                            objToBuy.Buy(this);
+                            break;
+                        }
+                        else
+                        {
+                            //Algo en la UI que muestre que no compró
+                            Debug.Log("No pudo comprar");
+                        }
                     }
                 }
             }
