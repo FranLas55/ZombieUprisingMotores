@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 121971508399990114}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 10
-  _speed: 5
+  _speed: 8
   _wallRayRange: 0.6
   _wallMask:
     serializedVersion: 2
     m_Bits: 1280
   _source: {fileID: 0}
-  _runSpeed: 10
+  _runSpeed: 16
   _jumpForce: 5
   _weapon: 0
   _myWeapons:
@@ -1629,7 +1629,7 @@ Transform:
   m_GameObject: {fileID: 4626185520058133856}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

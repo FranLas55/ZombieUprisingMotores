@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
-        _offset = transform.position;
+        _offset = transform.localPosition;
         Cursor.visible = _disableCursor;
     }
 
