@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1420601960146933796}
   - component: {fileID: 5195786218426222332}
   - component: {fileID: 7133350039895356201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LP_Bay_Door_Frame_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,10 +94,11 @@ GameObject:
   - component: {fileID: 4774342892620840573}
   - component: {fileID: 545029013770782355}
   - component: {fileID: 2090933175267194024}
-  - component: {fileID: 9207851331562573600}
-  - component: {fileID: 8628764266457687011}
-  - component: {fileID: 4916995761172275742}
-  m_Layer: 0
+  - component: {fileID: 5686332704325881159}
+  - component: {fileID: 1942308667663477737}
+  - component: {fileID: 3749697617746679617}
+  - component: {fileID: 6694593109546248962}
+  m_Layer: 8
   m_Name: LP_Bay_Door_Wall_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +170,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9207851331562573600
+--- !u!65 &5686332704325881159
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,9 +189,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.30000785, y: 9.000002, z: 6.000002}
-  m_Center: {x: 0.0000025182962, y: 4.5, z: 3.000001}
---- !u!65 &8628764266457687011
+  m_Size: {x: 0.3000133, y: 5.184003, z: 6.0000052}
+  m_Center: {x: 0.00000035762787, y: 6.4080024, z: 3.0000002}
+--- !u!65 &1942308667663477737
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,9 +210,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.03, y: 0.87, z: 0.19}
-  m_Center: {x: 0.31, y: 1.41, z: 5.28}
---- !u!65 &4916995761172275742
+  m_Size: {x: 0.3000133, y: 5.4584813, z: 1.0797029}
+  m_Center: {x: 0.00000035762787, y: 1.7292631, z: 5.4601517}
+--- !u!65 &3749697617746679617
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,8 +231,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.03, y: 0.87, z: 0.19}
-  m_Center: {x: 0.31, y: 1.41, z: 0.7}
+  m_Size: {x: 0.3000133, y: 5.4584813, z: 1.1104558}
+  m_Center: {x: 0.00000035762787, y: 1.7292631, z: 0.5702883}
+--- !u!65 &6694593109546248962
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647211758135124163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3000133, y: 0.9594026, z: 6.010626}
+  m_Center: {x: 0.00000035762787, y: -0.5202768, z: 2.99469}
 --- !u!1 &2702167651921923441
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +265,7 @@ GameObject:
   - component: {fileID: 1430841697005043554}
   - component: {fileID: 8958866916824719795}
   - component: {fileID: 968333320292311579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall BayDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +338,10 @@ GameObject:
   - component: {fileID: 6935417351677981081}
   - component: {fileID: 2283091757823601388}
   - component: {fileID: 9041195004258538045}
-  m_Layer: 0
+  - component: {fileID: 5431414038207778949}
+  - component: {fileID: 5878184422663552295}
+  - component: {fileID: 5636070180482046025}
+  m_Layer: 8
   m_Name: LP_Bay_Door_snaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,3 +413,66 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5431414038207778949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975399993979019661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42696422, y: 5.7053785, z: 4.908103}
+  m_Center: {x: -0.009397469, y: 2.350721, z: 3.0000768}
+--- !u!65 &5878184422663552295
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975399993979019661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7837909, y: 1.3784223, z: 0.32423496}
+  m_Center: {x: 0.4612325, y: 0.18724239, z: 5.292011}
+--- !u!65 &5636070180482046025
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975399993979019661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7456745, y: 1.3784223, z: 0.32423496}
+  m_Center: {x: 0.4802907, y: 0.18724239, z: 0.72}
