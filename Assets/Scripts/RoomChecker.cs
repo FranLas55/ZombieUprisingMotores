@@ -1,8 +1,21 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomChecker : MonoBehaviour
 {
-    [SerializeField] private Room[] _rooms;
+    public static RoomChecker Instance { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance) Destroy(gameObject);
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    [SerializeField] private List<Room> _rooms = new();
 
     public void ActivateRoom(Room roomToActivate)
     {
@@ -19,5 +32,10 @@ public class RoomChecker : MonoBehaviour
                 VARIABLE.gameObject.SetActive(active);
             }
         }
+    }
+
+    public void AddRoom(Room room)
+    {
+        if(!_rooms.Contains(room)) _rooms.Add(room);
     }
 }
