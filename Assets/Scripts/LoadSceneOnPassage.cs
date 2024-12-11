@@ -3,15 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnPassage : MonoBehaviour
 {
-    [Header("Scene Settings")]
-    [Tooltip("Name of the scene to load additively.")]
-    [SerializeField] private string sceneToLoad;
+    [Header("Escena")]
+    [Tooltip("Nombre de la escena a cargar.")]
+    [SerializeField] private string _sceneToLoad;
 
-    private bool sceneLoaded = false;
+    private bool _sceneLoaded = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!sceneLoaded && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (!_sceneLoaded && other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             LoadSceneAdditively();
         }
@@ -19,15 +19,15 @@ public class LoadSceneOnPassage : MonoBehaviour
 
     private void LoadSceneAdditively()
     {
-        if (!string.IsNullOrEmpty(sceneToLoad))
+        if (!string.IsNullOrEmpty(_sceneToLoad))
         {
-            SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
-            sceneLoaded = true;
-            Debug.Log($"Scene '{sceneToLoad}' loaded additively.");
+            SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Additive);
+            _sceneLoaded = true;
+            Debug.Log($"Escena cargada correctamente");
         }
         else
         {
-            Debug.LogWarning("No scene name specified to load.");
+            Debug.LogWarning("No hay escena");
         }
     }
 }
