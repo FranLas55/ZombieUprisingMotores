@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
 {
     private int _points;
     private int _enemyCount;
+    public NavMeshSurface surface;
+    
     [Header("Spawner")]
     [SerializeField] private Zombie[] _zombiePrefabs;
     [SerializeField] private Player _player;
