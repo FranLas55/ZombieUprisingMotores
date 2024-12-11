@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 5431414038207778949}
   - component: {fileID: 5878184422663552295}
   - component: {fileID: 5636070180482046025}
+  - component: {fileID: 7345946639827996236}
   m_Layer: 8
   m_Name: LP_Bay_Door_snaps
   m_TagString: Untagged
@@ -498,3 +499,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7456745, y: 1.3784223, z: 0.32423496}
   m_Center: {x: 0.4802907, y: 0.18724239, z: 0.72}
+--- !u!208 &7345946639827996236
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975399993979019661}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.62600005, y: 2.8530002, z: 2.4540002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.187, y: 2.351, z: 3.0000002}
+  m_TimeToStationary: 0.5

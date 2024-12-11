@@ -6,15 +6,17 @@ using static Unity.VisualScripting.Member;
 
 //Carlos Coronel
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Zombie : Entity
 {
     //[SerializeField] private float _moveSpeed = 2f;
 
     [SerializeField] protected Transform _playerTransform;
 
-    protected bool _canMove;
+    [SerializeField] protected bool _canMove;
 
     protected Vector3 _playerDir = new();
+    protected bool _isDeath;
 
     protected float distanceToPlayer;
 
@@ -44,6 +46,8 @@ public class Zombie : Entity
     private Ray _attackRay = new();
     private RaycastHit _attackHit;
 
+    protected NavMeshAgent _navAgent;
+
     protected override void Start()
     {
         base.Start();
@@ -51,10 +55,21 @@ public class Zombie : Entity
         //_playerTransform = Player.Instance.transform;
         _actualCooldown = _attackCooldown;
         _animator.SetBool(_isWalkingName, true);
+
+        _navAgent = GetComponent<NavMeshAgent>();
+
+        _navAgent.speed = _speed;
     }
 
     protected virtual void Update()
     {
+        if (_canMove == _navAgent.isStopped)
+        {
+            _navAgent.isStopped = !_canMove;
+        }
+
+        if (_isDeath) return;
+        
         _playerDir = (_playerTransform.position - transform.position).normalized;
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
 
@@ -65,9 +80,11 @@ public class Zombie : Entity
 
     protected virtual void FixedUpdate()
     {
+        if (_isDeath) return;
         if (_canMove)
         {
-            if (!IsBlocked(_playerDir)) _movement.Move(_playerDir);
+            //if (!IsBlocked(_playerDir)) _movement.Move(_playerDir);
+            _navAgent.SetDestination(_playerTransform.position);
         }
     }
 
@@ -94,7 +111,7 @@ public class Zombie : Entity
         {
             _canMove = true;
             _animator.SetBool(_isWalkingName, true);
-            transform.LookAt(_playerTransform.position);
+            //transform.LookAt(_playerTransform.position);
         }
     }
 
@@ -122,6 +139,9 @@ public class Zombie : Entity
     {
         GetComponent<Collider>().enabled = false;
         _rb.useGravity = false;
+        _canMove = false;
+        _isDeath = true;
+        
         _movement.Stop();
         _animator.SetTrigger(_onDeathName);
         GameManager.Instance.AddPoints(_pointsOnDeath);
