@@ -20,6 +20,7 @@ public class ExplosiveZombie : Zombie
         {
             _canExplode = true;
             _movement.ChangeSpeed(_runSpeed);
+            _navAgent.speed = _runSpeed;
         }
 
         if (_canExplode && distanceToPlayer <= _explosionRadius * .25f)

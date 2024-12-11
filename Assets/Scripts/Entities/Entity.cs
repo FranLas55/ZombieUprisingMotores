@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Francisco Lastra
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public abstract class Entity : MonoBehaviour, IDamageable
 {
     [Header("Values")]

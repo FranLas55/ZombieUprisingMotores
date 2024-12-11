@@ -18,8 +18,30 @@ public class RangeZombie : Zombie
 
     private bool _isRunning;
 
+    protected override void FixedUpdate()
+    {
+        if (_isDeath) return;
+        if (_canMove)
+        {
+            if (_isRunning)
+            {
+                //if(!IsBlocked(-_playerDir)) _movement.Move(_playerDir);
+                _navAgent.SetDestination((-_playerTransform.position + 2 * transform.position));
+            }
+            else
+            {
+                base.FixedUpdate();
+            }
+        }
+    }
+
     protected override void AttackAndMove()
     {
+        if (_isDeath)
+        {
+            StopAllCoroutines();
+            return;
+        }
         if (_isRunning) return;
         if (distanceToPlayer <= _runRange)
         {
@@ -50,6 +72,7 @@ public class RangeZombie : Zombie
             {
                 _actualCooldown -= Time.deltaTime;
             }
+
             transform.forward = _playerDir;
 
             _canMove = false;

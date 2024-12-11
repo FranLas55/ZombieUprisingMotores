@@ -1438,6 +1438,7 @@ GameObject:
   - component: {fileID: 5859407819246462130}
   - component: {fileID: 9052066876829253301}
   - component: {fileID: -4056298657687454960}
+  - component: {fileID: 545350449194594299}
   m_Layer: 7
   m_Name: ZombieRange
   m_TagString: Untagged
@@ -1511,7 +1512,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5859407819246462130
 MonoBehaviour:
@@ -1526,13 +1527,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 15
-  _speed: 5
+  _speed: 2.5
   _wallRayRange: 0.6
   _wallMask:
     serializedVersion: 2
     m_Bits: 1280
   _source: {fileID: -4056298657687454960}
   _playerTransform: {fileID: 0}
+  _canMove: 0
   _pointsOnDeath: 70
   _attackRange: 20
   _attackCooldown: 3
@@ -1672,6 +1674,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!195 &545350449194594299
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741782565596732025}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.62
+  m_Speed: 3.5
+  m_Acceleration: 38.22
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6848921619686526251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,17 +2573,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 501096127432024903}
     m_Modifications:
-    - target: {fileID: 4662429510960235424, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0925b711cf78ddb4cb2d7d4c1ee06731, type: 2}
     - target: {fileID: 6151121980965805478, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
       propertyPath: m_Name
       value: Particle System
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151121980965805478, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6802473900578663723, guid: f1d10742e27c2e641aed5b740698ef20, type: 3}
       propertyPath: m_LocalPosition.x
