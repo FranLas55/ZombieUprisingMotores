@@ -213,7 +213,9 @@ public class Zombie : Entity
             _rb.useGravity = false;
             _canMove = false;
             _isDeath = true;
-        
+
+            _rb.constraints = RigidbodyConstraints.FreezeAll;
+            
             _movement.Stop();
             _animator.SetTrigger(_onDeathName);
         }

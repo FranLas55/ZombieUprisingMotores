@@ -1513,7 +1513,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &5859407819246462130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,6 +1533,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   _source: {fileID: -4056298657687454960}
+  isThrown: 0
   _playerTransform: {fileID: 0}
   _canMove: 0
   _pointsOnDeath: 70

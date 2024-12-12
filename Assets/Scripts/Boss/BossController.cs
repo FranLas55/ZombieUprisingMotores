@@ -36,6 +36,8 @@ public class BossController : MonoBehaviour, IDamageable
     private bool _hasStarted;
     private bool _isRunning;
     private bool _isStopped;
+
+    public bool a;
     
     private bool _canAttack = true;
     private float _actualTime;
@@ -58,6 +60,7 @@ public class BossController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        a = _agent.isStopped;
         if (Input.GetKeyDown(KeyCode.P))
         {
             TakeDamage(10);
@@ -133,7 +136,9 @@ public class BossController : MonoBehaviour, IDamageable
                 case 2:
                     var possiblePlayer = Physics.OverlapSphere(transform.position, _attackRange, _playerMask);
                     
-                    if (possiblePlayer.Length > 0)
+                    var dir = possiblePlayer[0].transform.position - transform.position;
+                    
+                    if (!Physics.Raycast(transform.position, dir, _attackRange, _obstacleMask))
                     {
                         grabTarget = possiblePlayer[0].transform;
                         _animations.Grab();
@@ -152,13 +157,19 @@ public class BossController : MonoBehaviour, IDamageable
 
         if (possibleGrab.Length > 0)
         {
-            grabTarget = possibleGrab[0].transform;
-            _animations.Grab();
+            var dir = possibleGrab[0].transform.position - transform.position;
+            if (!Physics.Raycast(transform.position, dir, _attackRange, _obstacleMask))
+            {
+                grabTarget = possibleGrab[0].transform;
+                _animations.Grab();
+            }
         }
     }
 
     public void Punch()
     {
+        _agent.enabled = false;
+        _agent.isStopped = true;
         var attackRay = new Ray(_punchOrigin.position, _target.position - _punchOrigin.position);
 
         if (!Physics.Raycast(attackRay, _attackRange, _obstacleMask))
@@ -177,6 +188,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void FloorAttack()
     {
+        _agent.enabled = false;
+        _agent.isStopped = true;
         _floorAttackSystem.Play();
         
         var possibleTarget = Physics.OverlapSphere(transform.position, _attackRange, _playerMask + _zombieMask);
@@ -193,6 +206,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void Grab()
     {
+        _agent.enabled = false;
+        _agent.isStopped = true;
         if(!grabTarget) return;
         
         print($"agarre a {grabTarget.name}");
@@ -222,14 +237,20 @@ public class BossController : MonoBehaviour, IDamageable
         else if (grabTarget.TryGetComponent(out Zombie zombie))
         {
             zombie.GetForce(_target.position - transform.position, _actualStats.force);
+            if (zombie.TryGetComponent(out NavMeshAgent a))
+            {
+                a.enabled = false;
+            }
             zombie.isThrown = true;
         }
 
         grabTarget = null;
+        _actualPos = null;
     }
 
     public void FinishAttack()
     {
+        _agent.enabled = true;
         _canAttack = true;
     }
 

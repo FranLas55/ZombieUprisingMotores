@@ -56,10 +56,19 @@ public abstract class Entity : MonoBehaviour, IDamageable
         }
     }
 
+    private RigidbodyConstraints _constraints;
+    private Quaternion _rotation;
+
     public void GetForce(Vector3 direction, float force)
     {
         _rb.AddForce(direction * force, ForceMode.Impulse);
+
+        _constraints = _rb.constraints;
+        _rotation = transform.rotation;
+        
         _rb.constraints = RigidbodyConstraints.None;
+        
+        Invoke(nameof(ResetConstrains), .5f);
     }
 
     public abstract void OnDeath();
@@ -69,5 +78,11 @@ public abstract class Entity : MonoBehaviour, IDamageable
         _wallRay = new Ray(transform.position, dir.normalized);
 
         return Physics.Raycast(_wallRay, _wallRayRange, _wallMask);
+    }
+
+    void ResetConstrains()
+    {
+        _rb.constraints = _constraints;
+        transform.rotation = _rotation;
     }
 }

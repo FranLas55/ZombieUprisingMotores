@@ -227,7 +227,6 @@ public class Player : Entity
     {
         if (isThrown)
         {
-            _rb.constraints = RigidbodyConstraints.FreezeRotation;
             isThrown = false;
         }
     }
