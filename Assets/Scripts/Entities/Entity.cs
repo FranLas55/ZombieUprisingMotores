@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Francisco Lastra
 
-//[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Entity : MonoBehaviour, IDamageable
 {
     [Header("Values")]
@@ -23,6 +23,8 @@ public abstract class Entity : MonoBehaviour, IDamageable
     protected Rigidbody _rb;
 
     protected Movement _movement;
+
+    public bool isThrown;
 
     protected virtual void Start()
     {
@@ -53,10 +55,21 @@ public abstract class Entity : MonoBehaviour, IDamageable
             OnDeath();
         }
     }
-    /*protected virtual void Update()
-    {
 
-    }*/
+    private RigidbodyConstraints _constraints;
+    private Quaternion _rotation;
+
+    public void GetForce(Vector3 direction, float force)
+    {
+        _rb.AddForce(direction * force, ForceMode.Impulse);
+
+        _constraints = _rb.constraints;
+        _rotation = transform.rotation;
+        
+        _rb.constraints = RigidbodyConstraints.None;
+        
+        Invoke(nameof(ResetConstrains), .5f);
+    }
 
     public abstract void OnDeath();
     
@@ -65,5 +78,11 @@ public abstract class Entity : MonoBehaviour, IDamageable
         _wallRay = new Ray(transform.position, dir.normalized);
 
         return Physics.Raycast(_wallRay, _wallRayRange, _wallMask);
+    }
+
+    void ResetConstrains()
+    {
+        _rb.constraints = _constraints;
+        transform.rotation = _rotation;
     }
 }

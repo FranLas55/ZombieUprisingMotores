@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using weapon;
 
@@ -80,8 +78,9 @@ public class Player : Entity
 
     private void Update()
     {
+        if (isThrown) return;
         _dir = (transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical"));
-        _actualWeapon.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _actualWeapon?.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (Input.GetKey(_inputs.runKey)) _movement.ChangeSpeed(_runSpeed);
         else _movement.RestartSpeed();
@@ -90,10 +89,10 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(0))
         {
-            _actualWeapon.Shoot();
+            _actualWeapon?.Shoot();
         }
 
-        if (Input.GetKeyDown(_inputs.rechargeKey)) _actualWeapon.Recharge();
+        if (Input.GetKeyDown(_inputs.rechargeKey)) _actualWeapon?.Recharge();
 
         BuyObj();
 
@@ -212,7 +211,6 @@ public class Player : Entity
         }
     }
 
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -223,5 +221,13 @@ public class Player : Entity
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(_center.position, _extends);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (isThrown)
+        {
+            isThrown = false;
+        }
     }
 }

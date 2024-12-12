@@ -20,6 +20,7 @@ public class RangeZombie : Zombie
 
     protected override void FixedUpdate()
     {
+        if(isThrown) return;
         if (_isDeath) return;
         if (_canMove)
         {

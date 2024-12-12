@@ -27,6 +27,11 @@ public class BossControllerAvatar : MonoBehaviour
         _controller.FloorAttack();
     }
 
+    public void ChangePos()
+    {
+        _controller.ChangePos();
+    }
+
     public void Launch()
     {
         _controller.Launch();
