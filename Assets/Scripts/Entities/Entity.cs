@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Francisco Lastra
 
-//[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Entity : MonoBehaviour, IDamageable
 {
     [Header("Values")]
@@ -23,6 +23,8 @@ public abstract class Entity : MonoBehaviour, IDamageable
     protected Rigidbody _rb;
 
     protected Movement _movement;
+
+    public bool isThrown;
 
     protected virtual void Start()
     {
@@ -53,10 +55,12 @@ public abstract class Entity : MonoBehaviour, IDamageable
             OnDeath();
         }
     }
-    /*protected virtual void Update()
-    {
 
-    }*/
+    public void GetForce(Vector3 direction, float force)
+    {
+        _rb.AddForce(direction * force, ForceMode.Impulse);
+        _rb.constraints = RigidbodyConstraints.None;
+    }
 
     public abstract void OnDeath();
     

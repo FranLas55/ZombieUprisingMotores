@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,7 @@ public class Zombie : Entity
 
     protected virtual void Update()
     {
+        if(isThrown) return;
         if (_canMove == _navAgent.isStopped)
         {
             _navAgent.isStopped = !_canMove;
@@ -80,6 +82,7 @@ public class Zombie : Entity
 
     protected virtual void FixedUpdate()
     {
+        if(isThrown) return;
         if (_isDeath) return;
         if (_canMove)
         {
@@ -202,7 +205,21 @@ public class Zombie : Entity
         _animator.SetTrigger(_onDeathName);
     }
 
-   /*IEnumerator DeathZombies()
+    private void OnCollisionEnter(Collision other)
+    {
+        if (isThrown)
+        {
+            GetComponent<Collider>().enabled = false;
+            _rb.useGravity = false;
+            _canMove = false;
+            _isDeath = true;
+        
+            _movement.Stop();
+            _animator.SetTrigger(_onDeathName);
+        }
+    }
+
+    /*IEnumerator DeathZombies()
     {
         _animator.SetTrigger(_onDeathName);
         //_animator.SetBool(_isDeathName, true);
