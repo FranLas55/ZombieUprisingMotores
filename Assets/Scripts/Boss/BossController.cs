@@ -226,7 +226,8 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void Launch()
     {
-        print($"tire a {grabTarget.name}");
+        if(!grabTarget) return;
+        
         if (grabTarget.TryGetComponent(out Player player))
         {
             player.GetForce(transform.forward, _actualStats.force * 2);
