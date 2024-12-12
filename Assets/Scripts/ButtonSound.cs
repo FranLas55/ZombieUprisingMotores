@@ -9,7 +9,7 @@ public class ButtonSound : MonoBehaviour
 
     void Start()
     {
-        audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("Audio Source Botones").GetComponent<AudioSource>();
     }
 
     public void PlayHoverSound()
