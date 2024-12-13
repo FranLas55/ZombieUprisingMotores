@@ -1899,7 +1899,7 @@ MonoBehaviour:
   _spawnDelay: 2
   _roundDelay: 3
   _canStartSpawning: 1
-  _zombiesToSpawn: 15
+  _zombiesToSpawn: 8
   _playerCamera: {fileID: 0}
   _pointsText: {fileID: 7599970432270401043}
   _bulletsText: {fileID: 6534443953890722729}

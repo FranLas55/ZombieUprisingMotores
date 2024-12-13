@@ -386,7 +386,7 @@ MonoBehaviour:
   _dieClip: {fileID: 8300000, guid: 1e7e11032a058984e91f2d1b5708bf6d, type: 3}
   _explosionPrefab: {fileID: -6146449054565247562, guid: 8607b10de82be414d8d83a0b729427d1, type: 3}
   _runSpeed: 6
-  _explosionRadius: 9
+  _explosionRadius: 5
 --- !u!95 &1913823875691513374
 Animator:
   serializedVersion: 5
