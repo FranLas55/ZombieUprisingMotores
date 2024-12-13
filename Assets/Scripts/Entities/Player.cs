@@ -70,10 +70,10 @@ public class Player : Entity
     private void ResetPlayer()
     {
         //SceneManager.LoadScene(0);
-        Heal(_hp);
-        HasDied = false;
-        ChangeWeapon(WeaponEnum.Gun);
-        transform.position = Vector3.zero;
+        //Heal(_hp);
+        //HasDied = false;
+        //ChangeWeapon(WeaponEnum.Gun);
+        //transform.position = Vector3.zero;
     }
 
     private void Update()

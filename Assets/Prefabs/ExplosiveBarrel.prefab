@@ -205,4 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionPrefab: {fileID: -6146449054565247562, guid: 8607b10de82be414d8d83a0b729427d1, type: 3}
-  _explosionRadius: 9
+  _explosionRadius: 5

@@ -7,18 +7,24 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    private float maxScale = 5f;
 
     [Header("Values")]
+    [SerializeField] private float maxScale = 5f;
     [SerializeField] private int damage = 10;
     [SerializeField] private float duration = 1f;
     [SerializeField] private LayerMask _dmgMask;
+    [SerializeField] private AudioSource _audioPrefab;
 
     private float currentTime = 0f;
 
     private float currentScale;
 
     private List<IDamageable> _damageables = new();
+
+    private void Start()
+    {
+        Instantiate(_audioPrefab.gameObject, transform.position, Quaternion.identity);
+    }
 
     private void Update()
     {
@@ -53,5 +59,11 @@ public class Explosion : MonoBehaviour
     public void SetRadius(float radius)
     {
         maxScale = radius;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxScale);
     }
 }
