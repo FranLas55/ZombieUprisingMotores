@@ -308,4 +308,9 @@ public class GameManager : MonoBehaviour
     {
         if(!_spawnPoints.Contains(sp)) _spawnPoints.Add(sp);
     }
+
+    public void StartBossFight()
+    {
+        _zombiesToSpawn = 5;
+    }
 }
