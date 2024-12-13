@@ -8,6 +8,7 @@ public class CanvasManager : MonoBehaviour
 {
     [Header("Main Menu")]
     [SerializeField] private Canvas[] _mainMenuScreens;
+    [SerializeField] private GameObject loadingScreen;
 
     private Canvas _actualScreen;
 
@@ -28,6 +29,11 @@ public class CanvasManager : MonoBehaviour
                     _actualScreen = _mainMenuScreens[i];
                 }
             }
+        }
+
+        if (loadingScreen != null)
+        {
+            loadingScreen.SetActive(false);
         }
     }
 
@@ -55,5 +61,31 @@ public class CanvasManager : MonoBehaviour
     public void CloseUP()
     {
         Application.Quit();
+    }
+
+    public void ChangeSceneWithLoading(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        if (loadingScreen != null)
+        {
+            loadingScreen.SetActive(true);
+        }
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
+
+        while (!operation.isDone)
+        {
+            if (operation.progress >= 0.9f)
+            {
+                operation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
     }
 }
