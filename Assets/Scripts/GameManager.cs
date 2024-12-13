@@ -207,6 +207,11 @@ public class GameManager : MonoBehaviour
         return canBuy;
     }
 
+    public void GameOverCall()
+    {
+        GameOver();
+    }
+
     private void GameOver()
     {
         StopAllCoroutines();

@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class BossController : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Transform _target;
+     private Transform _target;
     [SerializeField] private ParticleSystem _floorAttackSystem;
     
     [Header("Stats")]
@@ -32,12 +32,11 @@ public class BossController : MonoBehaviour, IDamageable
 
     private NavMeshAgent _agent;
     private BossAnimations _animations;
+    private BossAudio _audio;
 
     private bool _hasStarted;
     private bool _isRunning;
     private bool _isStopped;
-
-    public bool a;
     
     private bool _canAttack = true;
     private float _actualTime;
@@ -48,6 +47,7 @@ public class BossController : MonoBehaviour, IDamageable
     
     private void Start()
     {
+        _audio = GetComponent<BossAudio>();
         _agent = GetComponent<NavMeshAgent>();
         _animations = GetComponent<BossAnimations>();
         _actualHp = _maxHP;
@@ -60,7 +60,6 @@ public class BossController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        a = _agent.isStopped;
         if (Input.GetKeyDown(KeyCode.P))
         {
             TakeDamage(10);
@@ -70,6 +69,7 @@ public class BossController : MonoBehaviour, IDamageable
         if (!_hasStarted)
         {
             _animations.OnStart();
+            _audio.ChangePhase();
             _hasStarted = true;
         }
         
@@ -114,6 +114,7 @@ public class BossController : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         if (!_target) return;
+        if(!_agent.enabled) return;
         _agent.SetDestination(_target.position);
     }
 
@@ -169,7 +170,9 @@ public class BossController : MonoBehaviour, IDamageable
     public void Punch()
     {
         _agent.enabled = false;
-        _agent.isStopped = true;
+        
+        _audio.PunchSfx();
+        
         var attackRay = new Ray(_punchOrigin.position, _target.position - _punchOrigin.position);
 
         if (!Physics.Raycast(attackRay, _attackRange, _obstacleMask))
@@ -189,8 +192,9 @@ public class BossController : MonoBehaviour, IDamageable
     public void FloorAttack()
     {
         _agent.enabled = false;
-        _agent.isStopped = true;
+//        _agent.isStopped = true;
         _floorAttackSystem.Play();
+        _audio.GroundPunchSfx();
         
         var possibleTarget = Physics.OverlapSphere(transform.position, _attackRange, _playerMask + _zombieMask);
 
@@ -207,8 +211,11 @@ public class BossController : MonoBehaviour, IDamageable
     public void Grab()
     {
         _agent.enabled = false;
-        _agent.isStopped = true;
+        
         if(!grabTarget) return;
+
+        _animations.SetGrabbed(true);
+        _audio.GrabSfx();
         
         print($"agarre a {grabTarget.name}");
 
@@ -228,6 +235,8 @@ public class BossController : MonoBehaviour, IDamageable
     {
         if(!grabTarget) return;
         
+        _audio.ThrowSfx();
+        
         if (grabTarget.TryGetComponent(out Player player))
         {
             player.GetForce(transform.forward, _actualStats.force * 2);
@@ -245,6 +254,8 @@ public class BossController : MonoBehaviour, IDamageable
             zombie.isThrown = true;
         }
 
+        _animations.SetGrabbed(false);
+        
         grabTarget = null;
         _actualPos = null;
     }
@@ -274,6 +285,7 @@ public class BossController : MonoBehaviour, IDamageable
             _actualStats = _secondPhaseStats;
             _isRunning = true;
             _animations.Run();
+            _audio.ChangePhase();
             _isSecondPhase = true;
             _agent.speed = _actualStats.speed;
         }
@@ -286,6 +298,27 @@ public class BossController : MonoBehaviour, IDamageable
     public void OnDeath()
     {
         _animations.OnDeath();
+        _audio.DeathSfx();
+    }
+
+    public void StepAudio()
+    {
+        _audio.PlayRandomStep();
+    }
+
+    public void GroundGrowl()
+    {
+        _audio.GroundGrowlSfx();
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
+
+    public void GameOver()
+    {
+        GameManager.Instance.GameOverCall();
     }
 }
 
