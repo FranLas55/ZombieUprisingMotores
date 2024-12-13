@@ -192,7 +192,7 @@ MonoBehaviour:
     m_Bits: 8
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 1344
   _damage: 4
   _bulletPrefab: {fileID: 3885042434816609236, guid: 14e1c7c5de2763c438b02ad948c30941, type: 3}
   _bulletSpeed: 20

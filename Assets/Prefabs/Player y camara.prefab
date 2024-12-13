@@ -83,7 +83,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &3529744601654238403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   _source: {fileID: 0}
-  _runSpeed: 16
+  isThrown: 0
+  _runSpeed: 12
   _jumpForce: 5
   _weapon: 0
   _myWeapons:
