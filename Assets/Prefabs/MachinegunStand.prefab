@@ -332,7 +332,6 @@ GameObject:
   - component: {fileID: 5649408149095222315}
   - component: {fileID: 3692314495390823965}
   - component: {fileID: 6917868861626796772}
-  - component: {fileID: 4302708033514860976}
   m_Layer: 0
   m_Name: ColtM4
   m_TagString: Untagged
@@ -407,22 +406,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!111 &4302708033514860976
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664330982319619640}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: -3704289112126983070, guid: d8ff8f9649a82e14791d960a0a17f1e4, type: 3}
-  m_Animations:
-  - {fileID: -3704289112126983070, guid: d8ff8f9649a82e14791d960a0a17f1e4, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &9088587014303461023
 GameObject:
   m_ObjectHideFlags: 0

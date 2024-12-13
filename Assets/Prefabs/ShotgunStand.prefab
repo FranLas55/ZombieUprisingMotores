@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 279099735499365442}
   - component: {fileID: 9116562196406953588}
   - component: {fileID: 3294383605595019917}
-  - component: {fileID: 8507158221834920409}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -324,22 +323,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!111 &8507158221834920409
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3856442905397734993}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 229770723416056496, guid: d63c91e11d9ebb6469488f1040be7d41, type: 3}
-  m_Animations:
-  - {fileID: 229770723416056496, guid: d63c91e11d9ebb6469488f1040be7d41, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &7316608423025833692
 GameObject:
   m_ObjectHideFlags: 0
