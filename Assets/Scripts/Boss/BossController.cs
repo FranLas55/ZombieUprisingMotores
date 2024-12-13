@@ -182,7 +182,7 @@ public class BossController : MonoBehaviour, IDamageable
                 
                 if (hitInfo.collider.TryGetComponent(out Player player))
                 {
-                    //player.TakeDamage(_actualStats.damage);
+                    player.TakeDamage(_actualStats.damage);
                 }
             }
         }
@@ -202,7 +202,7 @@ public class BossController : MonoBehaviour, IDamageable
             if (entity.TryGetComponent(out Entity paps))
             {
                 paps.GetForce(entity.transform.position - transform.position, _actualStats.force);
-                //paps.TakeDamage(_actualStats.damage / 2);
+                paps.TakeDamage(_actualStats.damage / 2);
             }
         }
     }
@@ -241,7 +241,7 @@ public class BossController : MonoBehaviour, IDamageable
             player.GetForce(transform.forward, _actualStats.force * 2);
 
             player.isThrown = true;
-            //player.TakeDamage(3);
+            player.TakeDamage(3);
         }
         else if (grabTarget.TryGetComponent(out Zombie zombie))
         {
