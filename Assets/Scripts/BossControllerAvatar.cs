@@ -41,4 +41,19 @@ public class BossControllerAvatar : MonoBehaviour
     {
         _controller.FinishAttack();
     }
+
+    public void StepAudio()
+    {
+        _controller.StepAudio();
+    }
+
+    public void GroundGrowl()
+    {
+        _controller.GroundGrowl();
+    }
+
+    public void GameOver()
+    {
+        _controller.GameOver();
+    }
 }

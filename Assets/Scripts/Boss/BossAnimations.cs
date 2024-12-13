@@ -13,6 +13,7 @@ public class BossAnimations : MonoBehaviour
     [SerializeField] private string onDeathName = "onDeath";
     [SerializeField] private string canMoveName = "canMove";
     [SerializeField] private string onStopName = "onStop";
+    [SerializeField] private string hasGrabbedName = "hasGrabbed";
 
     public void Punch()
     {
@@ -57,5 +58,10 @@ public class BossAnimations : MonoBehaviour
     public void OnStop()
     {
         _animator.SetTrigger(onStopName);
+    }
+
+    public void SetGrabbed(bool has)
+    {
+        _animator.SetBool(hasGrabbedName, has);
     }
 }

@@ -181,6 +181,7 @@ public abstract class Weapon : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         var cam = Camera.main;
+        if (!cam) return;
         Gizmos.DrawRay(cam.transform.position, cam.transform.forward * 1000);
     }
 }
