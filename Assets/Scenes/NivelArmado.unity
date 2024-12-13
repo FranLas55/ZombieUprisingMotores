@@ -13112,7 +13112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1383279943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17696,18 +17696,6 @@ PrefabInstance:
       propertyPath: _playerCamera
       value: 
       objectReference: {fileID: 1841689912}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _zombiesToSpawn
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _canStartSpawning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _spawnPoints.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20472,7 +20460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7572956697334067486, guid: a5dbdd8162c47f845aa688d74a7d5ee4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.244213
+      value: 22.21
       objectReference: {fileID: 0}
     - target: {fileID: 7572956697334067486, guid: a5dbdd8162c47f845aa688d74a7d5ee4, type: 3}
       propertyPath: m_LocalRotation.w
