@@ -17696,18 +17696,6 @@ PrefabInstance:
       propertyPath: _playerCamera
       value: 
       objectReference: {fileID: 1841689912}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _zombiesToSpawn
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _canStartSpawning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7285061060966235762, guid: cb7706b47b0aab44ca6df63e215f11d6, type: 3}
-      propertyPath: _spawnPoints.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
