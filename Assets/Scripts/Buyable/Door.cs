@@ -9,6 +9,7 @@ public class Door : Interactuable
     [SerializeField] string _openName = "onOpen";
     [SerializeField] string _resetName = "onRestart";
     [SerializeField] Animator _animator;
+    [SerializeField] private AudioSource _source;
 
     public bool hasBeenBought { get; private set; }
 
@@ -24,6 +25,7 @@ public class Door : Interactuable
     {
         print("Se abrió la puerta");
         _animator.SetTrigger(_openName);
+        _source.Play();
         hasBeenBought = true;
     }
 

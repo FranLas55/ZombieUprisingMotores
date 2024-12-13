@@ -60,17 +60,15 @@ public class BossController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeDamage(10);
-        }
-        
+        if (_isDead) return;
         if (!_target) return;
         if (!_hasStarted)
         {
             _animations.OnStart();
             _audio.ChangePhase();
             _hasStarted = true;
+            
+            GameManager.Instance.StartBossFight();
         }
         
         if (grabTarget && _actualPos)
@@ -113,6 +111,7 @@ public class BossController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (_isDead) return;
         if (!_target) return;
         if(!_agent.enabled) return;
         _agent.SetDestination(_target.position);
@@ -295,10 +294,16 @@ public class BossController : MonoBehaviour, IDamageable
         }
     }
 
+    private bool _isDead;
+
     public void OnDeath()
     {
-        _animations.OnDeath();
+        _isDead = true;
+        GetComponent<Collider>().enabled = false;
+        _agent.enabled = false;
+        
         _audio.DeathSfx();
+        _animations.OnDeath();
     }
 
     public void StepAudio()

@@ -2,25 +2,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Francisco Lastra
 
 public class DoorKey : MonoBehaviour
 {
     private Door _door;
-    private Renderer _renderer;
-    private Collider _collider;
+    private Animator _animator;
+
+    private bool coso;
 
     private void Start()
     {
         _door = GetComponent<Door>();
-        _renderer = GetComponent<Renderer>();
-        _collider = GetComponent<Collider>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _renderer.enabled = !_door.hasBeenBought;
-        _collider.enabled = !_door.hasBeenBought;
+        if (_door.hasBeenBought && !coso)
+        {
+            _animator.SetTrigger("GetDown");
+            LoadSceneAdditively();
+            coso = true;
+        }
+    }
+    
+    [Header("Escena")]
+    [Tooltip("Nombre de la escena a cargar.")]
+    [SerializeField] private string _sceneToLoad;
+
+    private void LoadSceneAdditively()
+    {
+        if (!string.IsNullOrEmpty(_sceneToLoad))
+        {
+            SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Additive);
+            Debug.Log($"Escena cargada correctamente");
+        }
+        else
+        {
+            Debug.LogWarning("No hay escena");
+        }
     }
 }
