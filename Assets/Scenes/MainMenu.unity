@@ -706,8 +706,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1887287868}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1997182276}
+        m_TargetAssemblyTypeName: VolumeSliders, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 0
         m_Arguments:
@@ -4933,8 +4933,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1887287868}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1997182276}
+        m_TargetAssemblyTypeName: VolumeSliders, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -6426,25 +6426,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1887287868}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 1997182276}
+        m_TargetAssemblyTypeName: VolumeSliders, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 709091017}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7656,17 +7644,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870409862}
   m_CullTransparentMesh: 1
---- !u!114 &1887287868 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1541032971681736304, guid: 8d4745afa06108841a9f64947f7ffdb3, type: 3}
-  m_PrefabInstance: {fileID: 179272079}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded1928e878a57b4bb3243e36bf0351c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1907891465
 GameObject:
   m_ObjectHideFlags: 0
@@ -8657,8 +8634,8 @@ MonoBehaviour:
   _musicSlider: {fileID: 1180662753}
   _sfxSlider: {fileID: 162149496}
   _initMasterVolume: 1
-  _initMusicVolume: 1
-  _initSfxVolume: 1
+  _initMusicVolume: 0.2
+  _initSfxVolume: 0.6
 --- !u!1 &2025679129
 GameObject:
   m_ObjectHideFlags: 0
