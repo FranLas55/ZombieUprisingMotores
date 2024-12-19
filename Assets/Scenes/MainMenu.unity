@@ -624,6 +624,8 @@ GameObject:
   m_Component:
   - component: {fileID: 162149495}
   - component: {fileID: 162149496}
+  - component: {fileID: 162149498}
+  - component: {fileID: 162149497}
   m_Layer: 5
   m_Name: SFX Slider
   m_TagString: Untagged
@@ -716,6 +718,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &162149497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162149494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 162149498}
+          m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+          m_MethodName: PlaySliderSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &162149498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162149494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b744246f586770e48944701a4e6d4f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 24100000, guid: 004454630bf3e514987d5631294c2b36, type: 2}
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
+  sliderSound: {fileID: 8300000, guid: daa2b3e1a2855ee47847b6112f2876d8, type: 3}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1001 &179272079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1330,8 +1381,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &296427156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,8 +2243,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &524927436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,8 +2503,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &529034885
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,8 +3214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!114 &693274870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4087,8 +4158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1008206672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,8 +4418,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1040208046
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,6 +4851,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1180662752}
   - component: {fileID: 1180662753}
+  - component: {fileID: 1180662755}
+  - component: {fileID: 1180662754}
   m_Layer: 5
   m_Name: Music Slider
   m_TagString: Untagged
@@ -4862,6 +4945,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1180662754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180662751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1180662755}
+          m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+          m_MethodName: PlaySliderSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1180662755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180662751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b744246f586770e48944701a4e6d4f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 24100000, guid: 004454630bf3e514987d5631294c2b36, type: 2}
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
+  sliderSound: {fileID: 8300000, guid: daa2b3e1a2855ee47847b6112f2876d8, type: 3}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1192414528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,8 +5786,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!114 &1399014869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6056,8 +6193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1479773340
 GameObject:
   m_ObjectHideFlags: 0
@@ -6202,6 +6344,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1491899808}
   - component: {fileID: 1491899809}
+  - component: {fileID: 1491899810}
+  - component: {fileID: 1491899811}
   m_Layer: 5
   m_Name: Master Slider
   m_TagString: Untagged
@@ -6294,6 +6438,67 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 709091017}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1491899810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491899807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b744246f586770e48944701a4e6d4f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 24100000, guid: 004454630bf3e514987d5631294c2b36, type: 2}
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
+  sliderSound: {fileID: 8300000, guid: daa2b3e1a2855ee47847b6112f2876d8, type: 3}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
+--- !u!114 &1491899811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491899807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1491899810}
+          m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+          m_MethodName: PlaySliderSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1545797799
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,8 +7502,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1812238901
 GameObject:
   m_ObjectHideFlags: 0
@@ -7710,8 +7920,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!1 &1915047915
 GameObject:
   m_ObjectHideFlags: 0
@@ -7920,8 +8135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 709091018}
+  audioMixer: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 99c08fec05eaaa64684c1b897c94e053, type: 3}
   clickSound: {fileID: 8300000, guid: f95c740e3b02c804095bda2ec112472b, type: 3}
+  sliderSound: {fileID: 0}
+  sfxVolumeParam: SFXVolume
+  musicVolumeParam: MusicVolume
+  masterVolumeParam: MasterVolume
 --- !u!114 &1915047923
 MonoBehaviour:
   m_ObjectHideFlags: 0
